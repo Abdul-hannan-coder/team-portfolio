@@ -7,6 +7,7 @@ import { useState } from "react";
 import { seniorDevelopers, testimonialTeam } from "@/lib/team-data";
 import { TeamNeonBackground } from "./TeamNeonBackground";
 import { TeamMemberCard } from "./TeamMemberCard";
+import { TeamLeaderCard } from "./TeamLeaderCard";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -110,36 +111,35 @@ export const Team = () => {
           </p>
         </motion.header>
 
-        <div className="mb-6 flex flex-col items-center gap-2 sm:mb-8">
+        <div className="mb-8 flex flex-col items-center gap-2 sm:mb-10">
           <SectionLabel>
             <Users className="h-3 w-3" />
-            <span>Team leaders</span>
+            <span>Team leader</span>
           </SectionLabel>
-          <p className="max-w-xl text-center text-xs leading-relaxed text-white/50 sm:text-sm">
-            Senior engineers guiding architecture, delivery, and quality across projects.
+          <p className="max-w-lg text-center text-xs leading-relaxed text-white/50 sm:text-sm">
+            Founder & lead engineer — architecture, AI systems, and delivery at Postsiva Tech.
           </p>
         </div>
 
-        <div className="mb-12 grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2 lg:mb-14">
-          {seniorDevelopers.map((dev, index) => (
-            <TeamMemberCard
-              key={dev.slug}
-              member={dev}
-              index={index}
-              lead
-              onZoomImage={setSelectedImage}
-            />
-          ))}
-        </div>
+        {seniorDevelopers.map((dev) => (
+          <TeamLeaderCard
+            key={dev.slug}
+            member={dev}
+            onZoomImage={setSelectedImage}
+          />
+        ))}
 
-        <div className="mb-6 flex flex-col items-center gap-2 sm:mb-8">
+        <div className="mb-6 mt-12 flex items-center gap-3 sm:mt-14 sm:mb-8">
+          <div className="h-px flex-1 bg-white/[0.06]" />
           <SectionLabel>
             <span>Team members</span>
           </SectionLabel>
-          <p className="max-w-xl text-center text-xs leading-relaxed text-white/50 sm:text-sm">
-            The specialists building products, interfaces, and automation at Postsiva Tech.
-          </p>
+          <div className="h-px flex-1 bg-white/[0.06]" />
         </div>
+
+        <p className="mx-auto mb-6 max-w-lg text-center text-xs leading-relaxed text-white/50 sm:mb-8 sm:text-sm">
+          The specialists building products, interfaces, and automation alongside our lead.
+        </p>
 
         <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
           {testimonialTeam.map((member, index) => (

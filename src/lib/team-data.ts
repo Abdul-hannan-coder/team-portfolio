@@ -27,11 +27,11 @@ export type TeamMember = {
 export const seniorDevelopers: TeamMember[] = [
   {
     slug: "uzair-yasin",
-    name: "Engr. Uzair Yasin",
+    name: "Engr. Muhammad Uzair Yasin",
     role: "Agentic AI & Backend Developer",
     description: "Developing Agentic AI systems and optimized backend APIs",
     fullDescription:
-      "Engr. Uzair Yasin is a Generative AI Engineer and Full-Stack Developer with expertise in Python, FastAPI, and Next.js. Currently working as an Agentic AI & Backend Developer at Cartlow, he specializes in building innovative digital solutions using LangChain, CrewAI, and LLMs. A collaborative team player, Uzair is focused on solving real-world problems through impactful AI features like data summarization and chatbot automation.",
+      "Engr. Muhammad Uzair Yasin is a Generative AI Engineer and Full-Stack Developer with expertise in Python, FastAPI, and Next.js. Currently working as an Agentic AI & Backend Developer at Cartlow, he specializes in building innovative digital solutions using LangChain, CrewAI, and LLMs. A collaborative team player, Uzair is focused on solving real-world problems through impactful AI features like data summarization and chatbot automation.",
     image: "/uzair.png",
     skills: [
       // Programming Languages
@@ -137,6 +137,9 @@ export const seniorDevelopers: TeamMember[] = [
       phone: "(+92) 3236891550",
     },
   },
+];
+
+export const testimonialTeam: TeamMember[] = [
   {
     slug: "fahad-jabbar",
     name: "Engr. Fahad Jabbar",
@@ -171,83 +174,6 @@ export const seniorDevelopers: TeamMember[] = [
       linkedin: "https://www.linkedin.com/in/mfahadjbr/",
       email: "mfahadjbr@gmail.com",
       phone: "(+92) 3295851873",
-    },
-  },
-];
-
-export const testimonialTeam: TeamMember[] = [
-  {
-    slug: "maryam-riaz",
-    name: "Maryam Riaz",
-    role: "Frontend Engineer",
-    description:
-      "Crafting user-friendly designs that deliver smooth experiences",
-    fullDescription: `Maryam Riaz is a dedicated Frontend Engineer with a passion for crafting intelligent and visually engaging web applications. She holds a Master’s degree in Computer Science (MCS) from the Virtual University of Pakistan, providing her with strong expertise in AI, Data Structures, Algorithms, and modern Web Technologies.
-
-Maryam is a Certified Cloud Applied Generative AI Engineer (PIAIC, 2024), with advanced proficiency in Next.js, TypeScript, Tailwind CSS, Python, and FastAPI. She specializes in developing responsive, accessible, and high-performance web solutions—seamlessly integrating AI-driven features to deliver real-world value.`,
-    image: "/maryam-detail/maryam.png", // Ensure 'maryam.jpg' is present in public/
-    skills: [
-      "Python",
-      "TypeScript",
-      "JavaScript",
-      "Next.js",
-      "Tailwind CSS",
-      "ShadCN UI",
-      "Figma",
-      "C++",
-      "AI / LLM",
-      "Agentic AI",
-      "Prompt Engineering",
-      "Context Engineering",
-      "FastAPI",
-      "n8n Automation",
-      "Git",
-      "GitHub",
-      "VS Code",
-      "Docker",
-      "API Development",
-      "UI / UX Design",
-      "Database",
-      "Automation",
-    ],
-    bulletPoints: [
-      "Master of Computer Science (Virtual University of Pakistan)",
-      "Joined PIAIC – Certified Cloud Applied Generative AI Engineer (2024)",
-      "Skilled in building beautiful and interactive web experiences",
-      "Focused on AI-integrated, responsive, and creative web applications",
-      "Avid explorer of new technologies and automation workflows",
-    ],
-    certificates: [
-      {
-        name: "Building Voice Agents for Production",
-        issuer: "DeepLearning.AI",
-        image: "/maryam-detail/Building-Voice-Agents-for-Production.png", // Place this image in the public folder as 'cert-voice-agents.jpg'
-        link: "https://learn.deeplearning.ai/accomplishments/e34bc7ae-ecd2-4e4f-9df6-ebd194ea2d6c?usp=sharing",
-      },
-      {
-        name: "n8n Automation",
-        issuer: "Udemy",
-        image: "/maryam-detail/n8n-automation.png", // Place in public as 'cert-n8n-automation.jpg'
-        link: "https://www.udemy.com/certificate/UC-638baeaa-6453-4da2-aa24-20facc3708c3/",
-      },
-      {
-        name: "HTML, CSS and JavaScript Certificate",
-        issuer: "Coursera",
-        image: "/maryam-detail/HTML-CSS-and-JavaScript-Certificate.png", // Place in public as 'cert-html-css-js.jpg'
-        link: "https://www.coursera.org/account/accomplishments/verify/YPH8WP5S5HZX",
-      },
-      {
-        name: "PHP",
-        issuer: "Great Learning Academy",
-        image: "/maryam-detail/PHP.png", // Place in public as 'cert-php.jpg'
-        link: "https://www.mygreatlearning.com/certificate/EGMUHVFF",
-      },
-    ],
-    cvLink: "/maryam-cv.pdf", // Place resume as 'maryam-cv.pdf' in public/
-    socials: {
-      linkedin: "https://www.linkedin.com/in/maryamriazdev/",
-      email: "maryamriaz408@gmail.com",
-      // Add phone if desired, otherwise leave blank or omit
     },
   },
   {
@@ -286,12 +212,6 @@ Maryam is a Certified Cloud Applied Generative AI Engineer (PIAIC, 2024), with a
         image: "/hannan-detail/AI-For-Everyone.jpg",
         link: "#",
       },
-      // {
-      //   name: "MERN Stack",
-      //   issuer: "Various",
-      //   image: "",
-      //   link: "#"
-      // },
       {
         name: "C++ Essentials 1",
         issuer: "Cisco & C++ Institute",
@@ -310,6 +230,79 @@ Maryam is a Certified Cloud Applied Generative AI Engineer (PIAIC, 2024), with a
       linkedin: "https://www.linkedin.com/in/abdul-hannan-bhatti/",
       email: "abdulhannan.personal@gmail.com",
       phone: "+923334688363",
+    },
+  },
+  {
+    slug: "maryam-riaz",
+    name: "Maryam Riaz",
+    role: "Frontend Engineer",
+    description:
+      "Crafting user-friendly designs that deliver smooth experiences",
+    fullDescription: `Maryam Riaz is a dedicated Frontend Engineer with a passion for crafting intelligent and visually engaging web applications. She holds a Master’s degree in Computer Science (MCS) from the Virtual University of Pakistan, providing her with strong expertise in AI, Data Structures, Algorithms, and modern Web Technologies.
+
+Maryam is a Certified Cloud Applied Generative AI Engineer (PIAIC, 2024), with advanced proficiency in Next.js, TypeScript, Tailwind CSS, Python, and FastAPI. She specializes in developing responsive, accessible, and high-performance web solutions—seamlessly integrating AI-driven features to deliver real-world value.`,
+    image: "/maryam-detail/maryam.png",
+    skills: [
+      "Python",
+      "TypeScript",
+      "JavaScript",
+      "Next.js",
+      "Tailwind CSS",
+      "ShadCN UI",
+      "Figma",
+      "C++",
+      "AI / LLM",
+      "Agentic AI",
+      "Prompt Engineering",
+      "Context Engineering",
+      "FastAPI",
+      "n8n Automation",
+      "Git",
+      "GitHub",
+      "VS Code",
+      "Docker",
+      "API Development",
+      "UI / UX Design",
+      "Database",
+      "Automation",
+    ],
+    bulletPoints: [
+      "Master of Computer Science (Virtual University of Pakistan)",
+      "Joined PIAIC – Certified Cloud Applied Generative AI Engineer (2024)",
+      "Skilled in building beautiful and interactive web experiences",
+      "Focused on AI-integrated, responsive, and creative web applications",
+      "Avid explorer of new technologies and automation workflows",
+    ],
+    certificates: [
+      {
+        name: "Building Voice Agents for Production",
+        issuer: "DeepLearning.AI",
+        image: "/maryam-detail/Building-Voice-Agents-for-Production.png",
+        link: "https://learn.deeplearning.ai/accomplishments/e34bc7ae-ecd2-4e4f-9df6-ebd194ea2d6c?usp=sharing",
+      },
+      {
+        name: "n8n Automation",
+        issuer: "Udemy",
+        image: "/maryam-detail/n8n-automation.png",
+        link: "https://www.udemy.com/certificate/UC-638baeaa-6453-4da2-aa24-20facc3708c3/",
+      },
+      {
+        name: "HTML, CSS and JavaScript Certificate",
+        issuer: "Coursera",
+        image: "/maryam-detail/HTML-CSS-and-JavaScript-Certificate.png",
+        link: "https://www.coursera.org/account/accomplishments/verify/YPH8WP5S5HZX",
+      },
+      {
+        name: "PHP",
+        issuer: "Great Learning Academy",
+        image: "/maryam-detail/PHP.png",
+        link: "https://www.mygreatlearning.com/certificate/EGMUHVFF",
+      },
+    ],
+    cvLink: "/maryam-cv.pdf",
+    socials: {
+      linkedin: "https://www.linkedin.com/in/maryamriazdev/",
+      email: "maryamriaz408@gmail.com",
     },
   },
   {
