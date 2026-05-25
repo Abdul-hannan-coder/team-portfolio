@@ -7,7 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { HeroCubeField } from "./HeroCubeField";
 import { HeroTeamFloat } from "./HeroTeamFloat";
-import LogoLoop from "../ui/LogoLoop";
+import { HeroTechStackStrip } from "./HeroTechStackStrip";
 import {
   SiReact,
   SiNextdotjs,
@@ -228,29 +228,7 @@ export default function HeroSection() {
           ))}
         </motion.div>
 
-        {/* Bottom Logo Loop */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="mt-16 pt-8 "
-        >
-          <p className="text-base font-extrabold text-[#ffffff] uppercase tracking-[0.2em] mb-10 text-center">
-            Powering Innovation with Modern Tech Stack
-          </p>
-          <LogoLoop
-            logos={techLogos}
-            speed={35}
-            direction="left"
-            logoHeight={32}
-            gap={64}
-            scaleOnHover
-            fadeOut
-            fadeOutColor="#000000"
-            className="text-[#ffffff] transition-colors"
-          />
-        </motion.div>
+        <HeroTechStackStrip logos={techLogos} />
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle, MessageCircle, Shield, Zap, BarChart4, Mail, Sparkles } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
+import { TestimonialsShowcase } from "./TestimonialsShowcase";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -47,8 +48,13 @@ export const TestimonialsAndFAQ = () => {
         }}
       />
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-        <div id="faq" className="mx-auto max-w-[48rem] lg:max-w-5xl">
+      <div className="relative z-10 mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-10 xl:px-14">
+        <TestimonialsShowcase />
+
+        <div
+          id="faq"
+          className="mx-auto max-w-[48rem] border-t border-white/[0.06] pt-16 lg:max-w-5xl lg:pt-20"
+        >
           <div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
             {/* Left */}
             <motion.div

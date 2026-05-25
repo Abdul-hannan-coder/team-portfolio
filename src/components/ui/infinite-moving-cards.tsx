@@ -31,15 +31,9 @@ export const InfiniteMovingCards = ({
   const getDirection = useCallback(() => {
     if (containerRef.current) {
       if (direction === "left") {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "forwards"
-        );
+        containerRef.current.style.setProperty("--animation-direction", "forwards");
       } else {
-        containerRef.current.style.setProperty(
-          "--animation-direction",
-          "reverse"
-        );
+        containerRef.current.style.setProperty("--animation-direction", "reverse");
       }
     }
   }, [direction]);
@@ -81,52 +75,79 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20  max-w-7xl overflow-hidden  mask-[linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20 max-w-7xl overflow-hidden mask-[linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
         className
       )}
     >
       <ul
         ref={scrollerRef}
         className={cn(
-          "flex min-w-full shrink-0 gap-8 py-12 w-max flex-nowrap",
+          "flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-6 sm:gap-5 sm:py-8",
           start && "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
         {items.map((item, idx) => (
           <li
-            className="w-[350px] md:w-[450px] relative rounded-[3rem] border border-[#ffffff]/20 shadow-xl shadow-[rgba(255, 255, 255,0.1)] shrink-0 bg-zinc-950 p-10 flex flex-col h-full transition-all duration-500 group hover:-translate-y-4"
+            className="group relative flex h-full w-[240px] shrink-0 flex-col rounded-2xl border p-5 shadow-lg transition-all duration-300 hover:-translate-y-2 sm:w-[280px] sm:p-6"
+            style={{
+              borderColor: "var(--accent-copper-border)",
+              background: "rgba(10,10,10,0.95)",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+            }}
             key={item.author + idx}
           >
-            <div className="absolute -top-5 -left-5 w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-black shadow-xl shadow-[#ffffff]/30 z-10 rotate-[-10deg] group-hover:rotate-0 transition-transform duration-500">
-              <Quote className="w-6 h-6" />
+            <div className="absolute -left-2 -top-2 z-10 flex h-8 w-8 rotate-[-8deg] items-center justify-center rounded-xl bg-white text-black shadow-md transition-transform duration-300 group-hover:rotate-0">
+              <Quote className="h-4 w-4" />
             </div>
 
-            <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-2 group-hover:translate-x-0">
-              <a href={item.link} target="_blank" className="w-10 h-10 bg-[#ffffff]/10 rounded-full flex items-center justify-center text-[#ffffff] hover:text-[#ffffff] hover:bg-[#ffffff]/10 transition-all">
-                <ExternalLink className="w-5 h-5" />
+            <div className="absolute right-4 top-4 translate-x-2 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+              <a
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-7 w-7 items-center justify-center rounded-full border text-white/80 transition-all hover:text-white"
+                style={{
+                  borderColor: "var(--accent-copper-border)",
+                  background: "var(--accent-copper-bg)",
+                }}
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
               </a>
             </div>
 
-            <div className="flex gap-1.5 mb-8">
+            <div className="mb-3 flex gap-1">
               {Array.from({ length: item.rating }).map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400 drop-shadow-sm" />
+                <Star
+                  key={i}
+                  className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400"
+                />
               ))}
             </div>
 
             <div className="grow">
-              <p className="text-[#ffffff] font-bold text-xl leading-relaxed mb-10 italic relative">
+              <p className="relative mb-4 text-sm font-semibold italic leading-relaxed text-white/90 sm:text-[15px]">
                 <span className="relative z-10">&quot;{item.text}&quot;</span>
               </p>
             </div>
 
-            <div className="flex items-center gap-4 pt-8 border-t border-[#ffffff]/10">
-              <div className="w-12 h-12 rounded-full bg-[#ffffff]/10 flex items-center justify-center text-[#ffffff] font-black text-lg shadow-inner">
+            <div
+              className="flex items-center gap-3 border-t pt-4"
+              style={{ borderColor: "var(--accent-copper-border)" }}
+            >
+              <div
+                className="flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold text-white"
+                style={{ background: "var(--accent-copper-bg)" }}
+              >
                 {item.author[0]}
               </div>
-              <div className="text-left">
-                <div className="font-black text-[#ffffff] text-lg tracking-tight leading-tight">{item.author}</div>
-                <div className="text-[#ffffff] font-bold text-sm uppercase tracking-widest mt-1 opacity-70">{item.country}</div>
+              <div className="min-w-0 text-left">
+                <div className="truncate text-sm font-bold leading-tight tracking-tight text-white">
+                  {item.author}
+                </div>
+                <div className="mt-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/50">
+                  {item.country}
+                </div>
               </div>
             </div>
           </li>

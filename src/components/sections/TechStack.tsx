@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { Server, ArrowUpRight, Globe, Smartphone, Cloud, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -42,7 +42,7 @@ const mobile: StackItem = {
 const backend: StackItem = {
   title: "Backend Solutions",
   description:
-    "Scalable APIs, secure auth, databases, and cloud-ready architecture built for production workloads.",
+    "Scalable APIs, secure auth, databases, and cloud-ready architecture for production workloads.",
   image: "/services/backend-development.png",
   imageClassName: "object-cover object-left",
   techs: ["Python", "FastAPI", "Node.js", "PostgreSQL", "Redis", "Django"],
@@ -61,6 +61,8 @@ const devops: StackItem = {
   icon: Cloud,
 };
 
+const STACK_ITEMS = [frontend, mobile, backend, devops] as const;
+
 const MARQUEE_TECHS = [
   "React.js",
   "Next.js",
@@ -76,147 +78,89 @@ const MARQUEE_TECHS = [
   "TypeScript",
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 32 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, delay: i * 0.1, ease: EASE },
-  }),
-};
-
-function StackCard({
-  stack,
-  index,
-  className,
-}: {
-  stack: StackItem;
-  index: number;
-  className?: string;
-}) {
-  const isFeatured = stack.featured;
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const spotlight = useMotionTemplate`radial-gradient(380px circle at ${mouseX}px ${mouseY}px, rgba(251,146,60,0.1), transparent 55%)`;
-
-  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
-  };
-
+function StackCard({ stack, index }: { stack: StackItem; index: number }) {
   const Icon = stack.icon;
 
   return (
     <motion.article
-      custom={index}
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-      whileHover={{ y: -4 }}
-      transition={{ type: "spring", stiffness: 300, damping: 24 }}
-      onMouseMove={onMouseMove}
-      className={cn("group relative flex flex-col overflow-hidden rounded-2xl border bg-zinc-950/90 backdrop-blur-sm lg:flex-row", className)}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.55, delay: index * 0.08, ease: EASE }}
+      whileHover={{ y: -3 }}
+      className={cn(
+        "group relative flex h-full flex-col gap-4 overflow-hidden rounded-2xl border bg-zinc-950/90 p-4 backdrop-blur-sm transition-shadow duration-300 sm:flex-row sm:items-stretch sm:gap-5 sm:p-5",
+        stack.featured && "ring-1 ring-[color:var(--accent-amber-border)]/40"
+      )}
       style={{
-        borderColor: isFeatured ? "var(--accent-amber-border)" : "var(--accent-copper-border)",
-        boxShadow: isFeatured ? "0 0 40px rgba(251,146,60,0.08)" : undefined,
+        borderColor: stack.featured
+          ? "var(--accent-amber-border)"
+          : "var(--accent-copper-border)",
+        boxShadow: stack.featured
+          ? "0 4px 28px rgba(251,146,60,0.08)"
+          : "0 4px 24px rgba(0,0,0,0.35)",
       }}
     >
       <div
-        className="pointer-events-none absolute -inset-px -z-10 rounded-2xl opacity-0 blur-sm transition-opacity duration-500 group-hover:opacity-100"
-        style={{
-          background:
-            "linear-gradient(135deg, var(--accent-copper-border), var(--accent-amber-glow), var(--accent-copper-border))",
-        }}
-      />
-
-      <motion.div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{ background: spotlight }}
-      />
-
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background:
             "linear-gradient(90deg, transparent, var(--accent-copper), var(--accent-amber), transparent)",
         }}
       />
 
-      {isFeatured && (
-        <div
-          className="pointer-events-none absolute -top-16 right-0 h-56 w-56 rounded-full blur-[90px]"
-          style={{ background: "rgba(251,146,60,0.12)" }}
-          aria-hidden
-        />
-      )}
-
-      <div
-        className={cn(
-          "relative flex items-center justify-center p-4 sm:p-5",
-          isFeatured ? "min-h-[176px] lg:w-[40%]" : "lg:w-[42%]"
-        )}
-      >
-        <div
+      <div className="relative mx-auto h-24 w-full max-w-[200px] shrink-0 overflow-hidden rounded-xl sm:mx-0 sm:h-28 sm:w-32">
+        <Image
+          src={stack.image}
+          alt={stack.title}
+          fill
           className={cn(
-            "relative w-full overflow-hidden shadow-lg",
-            isFeatured ? "aspect-[2/1] rounded-xl" : "aspect-[5/4] rounded-xl"
+            stack.imageClassName,
+            "transition-transform duration-500 group-hover:scale-105"
           )}
-          style={{ boxShadow: "0 0 0 1px var(--accent-copper-border)" }}
-        >
-          <Image
-            src={stack.image}
-            alt={stack.title}
-            fill
-            className={cn(stack.imageClassName, "transition-transform duration-700 group-hover:scale-105")}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/80 via-transparent to-transparent" />
-        </div>
-
+          sizes="128px"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/70 via-transparent to-transparent" />
         <div
-          className="absolute top-5 left-5 z-10 flex h-8 w-8 items-center justify-center rounded-lg shadow-md"
+          className="absolute left-2 top-2 z-10 flex h-7 w-7 items-center justify-center rounded-md shadow-sm"
           style={{
-            background: "linear-gradient(135deg, var(--accent-copper-light), var(--accent-amber))",
+            background:
+              "linear-gradient(135deg, var(--accent-copper-light), var(--accent-amber))",
             color: "#0a0a0a",
           }}
         >
-          <Icon className="h-4 w-4" />
+          <Icon className="h-3.5 w-3.5" />
         </div>
       </div>
 
-      <div className="relative z-10 flex flex-1 flex-col justify-center p-4 sm:p-5 lg:p-6">
-        {isFeatured && stack.badge && (
+      <div className="flex min-w-0 flex-1 flex-col gap-2 text-center sm:text-left">
+        {stack.featured && stack.badge && (
           <span
-            className="mb-3 inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.14em]"
+            className="mx-auto inline-flex w-fit items-center gap-1 rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider sm:mx-0"
             style={{
               borderColor: "var(--accent-amber-border)",
               background: "var(--accent-amber-bg)",
               color: "var(--accent-amber)",
             }}
           >
-            <Server className="h-3.5 w-3.5" />
+            <Server className="h-3 w-3" />
             {stack.badge}
           </span>
         )}
 
-        <h3
-          className={cn(
-            "mb-2 font-bold tracking-tight text-white",
-            isFeatured ? "text-lg sm:text-xl lg:text-2xl" : "text-base sm:text-lg"
-          )}
-        >
+        <h3 className="text-base font-bold tracking-tight text-white sm:text-lg">
           {stack.title}
         </h3>
 
-        <p className="max-w-md text-xs leading-relaxed text-white/55 sm:text-sm">{stack.description}</p>
+        <p className="line-clamp-2 text-xs leading-relaxed text-white/55 sm:text-sm">
+          {stack.description}
+        </p>
 
-        <div className="mt-3.5 flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap justify-center gap-1.5 sm:justify-start">
           {stack.techs.map((tech) => (
             <span
               key={tech}
-              className="rounded-full border px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white/80 sm:text-[10px]"
+              className="rounded-full border px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-white/75"
               style={{
                 borderColor: "var(--accent-copper-border)",
                 background: "var(--accent-copper-bg)",
@@ -229,7 +173,7 @@ function StackCard({
 
         <Link
           href="#services"
-          className="mt-4 inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[0.12em] transition-colors sm:text-xs"
+          className="mt-auto inline-flex items-center justify-center gap-1 pt-1 text-[10px] font-semibold uppercase tracking-wider transition-colors sm:justify-start sm:text-xs"
           style={{ color: "var(--accent-copper-light)" }}
         >
           View expertise
@@ -244,7 +188,7 @@ export const TechStack = () => {
   return (
     <section
       id="tech-stack"
-      className="relative isolate overflow-hidden border-t border-white/[0.06] bg-[#030303] py-16 sm:py-20 scroll-mt-20"
+      className="relative isolate scroll-mt-20 overflow-hidden border-t border-white/[0.06] bg-[#030303] py-16 sm:py-20"
     >
       <div
         className="pointer-events-none absolute inset-0"
@@ -254,13 +198,13 @@ export const TechStack = () => {
         }}
       />
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.header
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.75, ease: EASE }}
-          className="mx-auto mb-10 max-w-2xl text-center md:mb-14"
+          transition={{ duration: 0.7, ease: EASE }}
+          className="mx-auto mb-10 max-w-2xl text-center md:mb-12"
         >
           <div
             className="mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em]"
@@ -293,44 +237,24 @@ export const TechStack = () => {
           </p>
         </motion.header>
 
-        <div className="relative mx-auto max-w-[48rem] space-y-4 sm:space-y-5">
-          {/* Top row with center mid-line on desktop */}
-          <div className="relative grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
-            <div
-              className="pointer-events-none absolute top-6 bottom-6 left-1/2 z-[1] hidden w-px -translate-x-1/2 md:block"
-              aria-hidden
-            >
-              <div className="absolute inset-0 bg-white/[0.06]" />
-              <div
-                className="absolute inset-0 w-px"
-                style={{
-                  background:
-                    "linear-gradient(180deg, transparent, var(--accent-copper), var(--accent-amber), transparent)",
-                  boxShadow: "0 0 12px var(--accent-amber-glow)",
-                }}
-              />
-            </div>
-
-            <StackCard stack={frontend} index={0} className="relative z-[2]" />
-            <StackCard stack={mobile} index={1} className="relative z-[2]" />
-          </div>
-
-          <StackCard stack={backend} index={2} className="w-full" />
-          <StackCard stack={devops} index={3} className="mx-auto w-full max-w-2xl" />
+        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
+          {STACK_ITEMS.map((stack, index) => (
+            <StackCard key={stack.title} stack={stack} index={index} />
+          ))}
         </div>
 
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="relative mt-10 overflow-hidden sm:mt-12"
+          className="relative mt-8 overflow-hidden sm:mt-10"
         >
           <div
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#030303] to-transparent sm:w-24"
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#030303] to-transparent sm:w-16"
             aria-hidden
           />
           <div
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#030303] to-transparent sm:w-24"
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#030303] to-transparent sm:w-16"
             aria-hidden
           />
 
@@ -343,7 +267,7 @@ export const TechStack = () => {
               MARQUEE_TECHS.map((tech) => (
                 <span
                   key={`${loop}-${tech}`}
-                  className="shrink-0 whitespace-nowrap rounded-full border px-4 py-1.5 text-[10px] font-bold uppercase tracking-wide text-white/75 sm:text-xs"
+                  className="shrink-0 whitespace-nowrap rounded-full border px-3 py-1 text-[9px] font-semibold uppercase tracking-wide text-white/70 sm:text-[10px]"
                   style={{
                     borderColor: "var(--accent-copper-border)",
                     background: "var(--accent-copper-bg)",

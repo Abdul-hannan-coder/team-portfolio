@@ -65,10 +65,10 @@ export const ContactAndFooter = () => {
   }, []);
 
   return (
-    <>
+    <div className="w-full min-w-full">
       <section
         id="contact"
-        className="relative isolate overflow-hidden border-t border-white/[0.06] bg-[#030303] pt-16 pb-20 sm:pt-20 sm:pb-24"
+        className="relative isolate w-full overflow-hidden border-t border-white/[0.06] bg-[#030303] pt-16 pb-20 sm:pt-20 sm:pb-24"
       >
         <div
           className="pointer-events-none absolute inset-0"
@@ -78,7 +78,7 @@ export const ContactAndFooter = () => {
           }}
         />
 
-        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-10 xl:px-14">
           <motion.header
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -314,6 +314,6 @@ export const ContactAndFooter = () => {
         </div>
       </section>
       <Footer />
-    </>
+    </div>
   );
 };

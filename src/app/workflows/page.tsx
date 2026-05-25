@@ -9,10 +9,13 @@ export const metadata = {
 
 export default function WorkflowsPage() {
   return (
-    <main className="min-h-screen grid-bg relative">
+    <main className="relative min-h-screen">
+      <div className="pointer-events-none absolute inset-0 grid-bg" aria-hidden />
       <div className="relative z-10">
         <Navbar />
         <N8nWorkflows fullPage />
+      </div>
+      <div className="relative z-10 w-full bg-[#030303]">
         <ContactAndFooter />
       </div>
     </main>

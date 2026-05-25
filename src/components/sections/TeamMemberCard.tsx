@@ -1,11 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Linkedin, Mail, ZoomIn, ExternalLink } from "lucide-react";
+import { Linkedin, Mail, ZoomIn, ArrowUpRight } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import type { TeamMember } from "@/lib/team-data";
+import { cn } from "@/lib/utils";
 
 type TeamMemberCardProps = {
   member: TeamMember;
@@ -16,35 +17,30 @@ type TeamMemberCardProps = {
 
 export function TeamMemberCard({ member, index, onZoomImage, lead }: TeamMemberCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: index % 2 === 0 ? -32 : 32, y: 24 }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
+    <motion.article
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{
-        duration: 0.7,
-        delay: index * 0.12,
-        ease: [0.16, 1, 0.3, 1],
+        duration: 0.55,
+        delay: index * 0.08,
+        ease: [0.22, 1, 0.36, 1],
       }}
-      whileHover={{ y: -8 }}
-      className="group relative h-full w-full"
+      whileHover={{ y: -3 }}
+      className="group relative h-full"
     >
       <div
-        className="absolute -inset-px -z-10 rounded-[2.5rem] opacity-0 blur-sm transition-all duration-500 group-hover:opacity-100"
-        style={{
-          background:
-            "linear-gradient(135deg, var(--accent-copper-border), var(--accent-amber-glow), var(--accent-copper-border))",
-        }}
-      />
-
-      <div
-        className="relative flex h-full flex-col items-center gap-8 overflow-hidden rounded-[2.5rem] border bg-zinc-950/85 p-8 shadow-xl shadow-black/50 backdrop-blur-md transition-all duration-500 sm:p-10"
+        className={cn(
+          "relative flex h-full flex-col gap-4 overflow-hidden rounded-2xl border bg-zinc-950/90 p-4 backdrop-blur-sm transition-shadow duration-300 sm:flex-row sm:items-stretch sm:gap-5 sm:p-5",
+          lead && "sm:gap-6"
+        )}
         style={{
           borderColor: "var(--accent-copper-border)",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.5)",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.35)",
         }}
       >
         <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           style={{
             background:
               "linear-gradient(90deg, transparent, var(--accent-copper), var(--accent-amber), transparent)",
@@ -53,7 +49,7 @@ export function TeamMemberCard({ member, index, onZoomImage, lead }: TeamMemberC
 
         {lead && (
           <span
-            className="absolute right-5 top-5 rounded-full border px-3 py-1 text-[9px] font-black uppercase tracking-widest"
+            className="absolute right-3 top-3 z-10 rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider"
             style={{
               borderColor: "var(--accent-amber-border)",
               background: "var(--accent-amber-bg)",
@@ -64,83 +60,86 @@ export function TeamMemberCard({ member, index, onZoomImage, lead }: TeamMemberC
           </span>
         )}
 
-        <div
-          className="relative h-64 w-64 shrink-0 cursor-zoom-in overflow-hidden rounded-3xl shadow-lg transition-all duration-500 group-hover:shadow-[0_0_30px_var(--accent-amber-glow)]"
-          style={{ boxShadow: "0 0 0 2px var(--accent-copper-border)" }}
+        <button
+          type="button"
           onClick={() => onZoomImage(member.image)}
+          className={cn(
+            "relative mx-auto shrink-0 cursor-zoom-in overflow-hidden rounded-xl transition-shadow duration-300 group-hover:shadow-[0_0_20px_var(--accent-amber-glow)] sm:mx-0",
+            lead ? "h-28 w-28 sm:h-32 sm:w-32" : "h-24 w-24 sm:h-28 sm:w-28"
+          )}
+          style={{ boxShadow: "0 0 0 1px var(--accent-copper-border)" }}
+          aria-label={`View photo of ${member.name}`}
         >
           <Image
             src={member.image}
             alt={member.name}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
-            sizes="(max-width: 640px) 256px, 320px"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes={lead ? "128px" : "112px"}
           />
           <div
-            className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-            style={{ background: "var(--accent-amber-bg)" }}
+            className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            style={{ background: "rgba(0,0,0,0.45)" }}
           >
-            <ZoomIn className="h-8 w-8" style={{ color: "var(--accent-amber)" }} />
+            <ZoomIn className="h-5 w-5" style={{ color: "var(--accent-amber)" }} />
+          </div>
+        </button>
+
+        <div className="flex min-w-0 flex-1 flex-col gap-2.5 text-center sm:text-left">
+          <div className={cn("space-y-1", lead && "pr-12 sm:pr-14")}>
+            <h3 className="text-base font-bold tracking-tight text-white sm:text-lg">
+              {member.name}
+            </h3>
+            <p
+              className="inline-block rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+              style={{
+                borderColor: "var(--accent-copper-border)",
+                background: "var(--accent-copper-bg)",
+                color: "var(--accent-copper-light)",
+              }}
+            >
+              {member.role}
+            </p>
+          </div>
+
+          <p className="line-clamp-2 text-sm leading-relaxed text-white/55">
+            {member.description}
+          </p>
+
+          <div className="mt-auto flex flex-col items-center gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-2">
+              {member.socials.linkedin && (
+                <SocialBtn href={member.socials.linkedin} external>
+                  <Linkedin className="h-4 w-4" />
+                </SocialBtn>
+              )}
+              {member.socials.email && (
+                <SocialBtn href={`mailto:${member.socials.email}`}>
+                  <Mail className="h-4 w-4" />
+                </SocialBtn>
+              )}
+              {member.socials.phone && (
+                <SocialBtn
+                  href={`https://wa.me/${member.socials.phone.replace(/[^0-9]/g, "")}`}
+                  external
+                >
+                  <FaWhatsapp className="h-4 w-4" />
+                </SocialBtn>
+              )}
+            </div>
+
+            <Link
+              href={`/team/${member.slug}`}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors hover:text-[var(--accent-copper-light)]"
+              style={{ color: "var(--accent-amber)" }}
+            >
+              View profile
+              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
         </div>
-
-        <h3 className="text-center text-2xl font-black tracking-tight text-white sm:text-4xl">
-          {member.name}
-        </h3>
-
-        <div
-          className="rounded-full border px-6 py-2 text-center text-xs font-bold uppercase tracking-widest"
-          style={{
-            borderColor: "var(--accent-copper-border)",
-            background: "var(--accent-copper-bg)",
-            color: "var(--accent-copper-light)",
-          }}
-        >
-          {member.role}
-        </div>
-
-        <p className="max-w-sm text-center text-lg font-medium leading-relaxed text-white/75">
-          {member.description}
-        </p>
-
-        <div className="flex items-center justify-center gap-5">
-          {member.socials.linkedin && (
-            <SocialBtn href={member.socials.linkedin} external>
-              <Linkedin className="h-6 w-6" />
-            </SocialBtn>
-          )}
-          {member.socials.email && (
-            <SocialBtn href={`mailto:${member.socials.email}`}>
-              <Mail className="h-6 w-6" />
-            </SocialBtn>
-          )}
-          {member.socials.phone && (
-            <SocialBtn
-              href={`https://wa.me/${member.socials.phone.replace(/[^0-9]/g, "")}`}
-              external
-            >
-              <FaWhatsapp className="h-6 w-6" />
-            </SocialBtn>
-          )}
-        </div>
-
-        <div className="mt-auto w-full">
-          <Link
-            href={`/team/${member.slug}`}
-            className="group/btn flex w-full items-center justify-center gap-2 rounded-2xl border py-5 font-black text-white transition-all hover:text-black"
-            style={{
-              borderColor: "var(--accent-copper-border)",
-              background:
-                "linear-gradient(135deg, var(--accent-copper-bg), var(--accent-amber-bg))",
-              boxShadow: "0 4px 20px var(--accent-amber-glow)",
-            }}
-          >
-            <span className="transition-colors group-hover/btn:text-black">View Full Profile</span>
-            <ExternalLink className="h-5 w-5 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 group-hover/btn:text-black" />
-          </Link>
-        </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }
 
@@ -157,7 +156,7 @@ function SocialBtn({
     <a
       href={href}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="flex h-12 w-12 items-center justify-center rounded-xl border transition-all hover:border-[color:var(--accent-amber-border)] hover:bg-[color:var(--accent-amber)] hover:text-black"
+      className="flex h-8 w-8 items-center justify-center rounded-lg border transition-all hover:border-[color:var(--accent-amber-border)] hover:bg-[color:var(--accent-amber)] hover:text-black"
       style={{
         borderColor: "var(--accent-copper-border)",
         background: "var(--accent-copper-bg)",

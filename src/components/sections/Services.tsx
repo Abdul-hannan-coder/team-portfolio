@@ -86,7 +86,7 @@ export const Services = () => {
   });
 
   return (
-    <section id="services" className="relative isolate min-h-screen overflow-hidden bg-transparent py-24 sm:py-32 lg:py-40">
+    <section id="services" className="relative isolate overflow-hidden bg-transparent py-16 sm:py-20 lg:py-24">
       <ServicesArcBackground />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,20 +95,20 @@ export const Services = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: EASE }}
-          className="mx-auto mb-20 max-w-3xl text-center md:mb-28"
+          className="mx-auto mb-10 max-w-2xl text-center md:mb-14"
         >
           <div
-            className="mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.18em]"
+            className="mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em]"
             style={{
               borderColor: "var(--accent-copper-border)",
               background: "var(--accent-copper-bg)",
               color: "var(--accent-copper-light)",
             }}
           >
-            <Sparkles className="h-3.5 w-3.5" style={{ color: "var(--accent-amber)" }} />
+            <Sparkles className="h-3 w-3" style={{ color: "var(--accent-amber)" }} />
             Services
           </div>
-          <h2 className="mb-5 text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h2 className="mb-3 text-xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
             Built for{" "}
             <span
               className="bg-clip-text font-bold text-transparent [-webkit-background-clip:text]"
@@ -120,7 +120,7 @@ export const Services = () => {
               scale & clarity
             </span>
           </h2>
-          <p className="text-base leading-relaxed text-white/55 sm:text-lg">
+          <p className="text-sm leading-relaxed text-white/55 sm:text-base">
             End-to-end software—from interface to infrastructure—delivered with the rigor your product deserves.
           </p>
         </motion.header>

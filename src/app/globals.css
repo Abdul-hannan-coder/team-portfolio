@@ -164,6 +164,52 @@ body {
   .services-diagonal-lane {
     animation: services-diagonal-lane 14s ease-in-out infinite;
   }
+
+  .testimonials-board-float {
+    animation: testimonials-board-float 7s ease-in-out infinite;
+  }
+
+  .testimonials-shine {
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(255, 255, 255, 0.12) 50%,
+      transparent 60%
+    );
+    animation: testimonials-shine 5s ease-in-out infinite;
+  }
+
+  .testimonials-shine-slow {
+    background: linear-gradient(
+      115deg,
+      transparent 45%,
+      rgba(251, 146, 60, 0.08) 50%,
+      transparent 55%
+    );
+    animation: testimonials-shine 9s ease-in-out infinite;
+    animation-delay: 2s;
+  }
+
+  .testimonials-kenburns {
+    animation: testimonials-kenburns 22s ease-in-out infinite;
+  }
+
+  .testimonials-ring-spin {
+    animation: testimonials-ring-spin 24s linear infinite;
+  }
+
+  .testimonials-corner-bracket {
+    animation: testimonials-corner-pulse 4s ease-in-out infinite;
+  }
+
+  .testimonials-particle {
+    opacity: 0;
+    animation: testimonials-particle-rise 5s ease-in infinite;
+  }
+
+  .testimonials-frame-glow {
+    animation: testimonials-frame-glow 4s ease-in-out infinite;
+  }
 }
 
 @keyframes team-sweep {
@@ -277,5 +323,90 @@ body {
   }
   50% {
     transform: rotate(-33deg) translate(18px, -10px);
+  }
+}
+
+@keyframes testimonials-board-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes testimonials-shine {
+  0% {
+    transform: translateX(-120%) skewX(-12deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateX(120%) skewX(-12deg);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateX(120%) skewX(-12deg);
+    opacity: 0;
+  }
+}
+
+@keyframes testimonials-kenburns {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes testimonials-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes testimonials-corner-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes testimonials-particle-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  15% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) scale(1);
+  }
+}
+
+@keyframes testimonials-frame-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 28px 80px rgba(0, 0, 0, 0.55),
+      0 0 0 0 rgba(251, 146, 60, 0);
+  }
+  50% {
+    box-shadow:
+      0 32px 90px rgba(0, 0, 0, 0.5),
+      0 0 28px rgba(251, 146, 60, 0.12);
   }
 }

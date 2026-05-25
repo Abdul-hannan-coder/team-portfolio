@@ -1,14 +1,17 @@
 "use client";
 
-import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import { Sparkles, Github, Globe, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 import type { Project } from "@/lib/project-data";
 import { PostsivaProjectSpotlight } from "./PostsivaProjectSpotlight";
 import { PortfolioCubeBackground } from "./PortfolioCubeBackground";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const FALLBACK_IMAGE = "/hero-section2.png";
 
 interface PortfolioProps {
   projects: Project[];
@@ -16,131 +19,95 @@ interface PortfolioProps {
   limit?: number;
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.12 },
-  },
-};
+function ProjectCover({
+  project,
+  className,
+}: {
+  project: Project;
+  className?: string;
+}) {
+  const [src, setSrc] = useState(project.image);
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 36 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: EASE },
-  },
-};
+  return (
+    <div className={cn("relative overflow-hidden bg-zinc-900", className)}>
+      <Image
+        src={src}
+        alt={project.title}
+        fill
+        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        onError={() => setSrc(FALLBACK_IMAGE)}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/90 via-[#030303]/20 to-transparent" />
+
+      {project.featured && (
+        <span
+          className="absolute right-3 top-3 flex items-center gap-1 rounded-md px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide"
+          style={{
+            background: "linear-gradient(135deg, var(--accent-copper-light), var(--accent-amber))",
+            color: "#0a0a0a",
+          }}
+        >
+          <Sparkles className="h-2.5 w-2.5" />
+          Featured
+        </span>
+      )}
+    </div>
+  );
+}
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const spotlight = useMotionTemplate`radial-gradient(380px circle at ${mouseX}px ${mouseY}px, rgba(251,146,60,0.12), transparent 55%)`;
-
-  function onMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
-  }
+  const hasLinks = Boolean(project.githubLink || project.liveLink);
 
   return (
     <motion.article
-      variants={cardVariants}
-      whileHover={{ y: -8 }}
-      transition={{ type: "spring", stiffness: 320, damping: 24 }}
-      onMouseMove={onMouseMove}
-      className="group relative h-full"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5, delay: index * 0.05, ease: EASE }}
+      className="group flex h-full flex-col"
     >
       <div
-        className="pointer-events-none absolute -inset-px -z-10 rounded-3xl opacity-0 blur-sm transition-opacity duration-500 group-hover:opacity-100"
+        className={cn(
+          "flex h-full flex-col overflow-hidden rounded-xl border bg-zinc-950/95 transition-all duration-300",
+          "hover:border-[color:var(--accent-copper-border)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.45)]",
+          project.featured && "border-[color:var(--accent-amber-border)]/60"
+        )}
         style={{
-          background:
-            "linear-gradient(135deg, var(--accent-copper-border), var(--accent-amber-glow), var(--accent-copper-border))",
-        }}
-      />
-
-      <motion.div
-        className="pointer-events-none absolute inset-0 z-0 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{ background: spotlight }}
-      />
-
-      <div
-        className="relative z-10 flex h-full flex-col overflow-hidden rounded-3xl border bg-zinc-950/90 backdrop-blur-md transition-shadow duration-500 group-hover:shadow-[0_0_36px_var(--accent-amber-glow)]"
-        style={{
-          borderColor: project.featured ? "var(--accent-amber-border)" : "var(--accent-copper-border)",
+          borderColor: "var(--accent-copper-border)",
         }}
       >
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-px opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, var(--accent-copper), var(--accent-amber), transparent)",
-          }}
-        />
-
-        <Link href={`/portfolio/${project.slug}`} className="relative block aspect-[16/10] overflow-hidden">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[#030303]/30 to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-85" />
-
-          <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-            <span
-              className="rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider backdrop-blur-md"
-              style={{
-                borderColor: "var(--accent-copper-border)",
-                background: "rgba(0,0,0,0.65)",
-                color: "var(--accent-copper-light)",
-              }}
-            >
-              {project.category}
-            </span>
-            {project.featured && (
-              <span
-                className="flex items-center gap-1 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
-                style={{
-                  background: "linear-gradient(135deg, var(--accent-copper-light), var(--accent-amber))",
-                  color: "#0a0a0a",
-                }}
-              >
-                <Sparkles className="h-3 w-3" />
-                Featured
-              </span>
-            )}
-          </div>
-
-          <div
-            className="absolute right-4 bottom-4 flex h-11 w-11 translate-y-2 items-center justify-center rounded-xl opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-            style={{
-              background: "linear-gradient(135deg, var(--accent-copper-light), var(--accent-amber))",
-              color: "#0a0a0a",
-            }}
-          >
-            <ArrowUpRight className="h-5 w-5" />
-          </div>
+        <Link
+          href={`/portfolio/${project.slug}`}
+          className="relative block aspect-[16/10] shrink-0"
+        >
+          <ProjectCover project={project} className="absolute inset-0" />
         </Link>
 
-        <div className="flex grow flex-col p-6 sm:p-7">
-          <Link href={`/portfolio/${project.slug}`} className="block">
-            <h3 className="mb-2 line-clamp-2 text-xl font-bold tracking-tight text-white sm:text-2xl">
+        <div className="flex flex-1 flex-col p-4 sm:p-5">
+          <p
+            className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.14em]"
+            style={{ color: "var(--accent-copper)" }}
+          >
+            {project.category}
+          </p>
+
+          <Link href={`/portfolio/${project.slug}`} className="mb-2 block">
+            <h3 className="line-clamp-2 text-base font-bold leading-snug tracking-tight text-white transition-colors group-hover:text-[var(--accent-copper-light)] sm:text-[17px]">
               {project.title}
             </h3>
-            <p className="mb-5 line-clamp-2 text-sm leading-relaxed text-white/55 sm:text-base">
-              {project.description}
-            </p>
           </Link>
 
+          <p className="mb-4 line-clamp-2 flex-1 text-sm leading-relaxed text-white/55">
+            {project.description}
+          </p>
+
           {project.tech.length > 0 && (
-            <div className="mb-5 flex flex-wrap gap-2">
+            <div className="mb-4 flex min-h-[26px] flex-wrap gap-1.5">
               {project.tech.slice(0, 4).map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white/75"
+                  className="rounded-md border px-2 py-0.5 text-[10px] font-medium text-white/70"
                   style={{
                     borderColor: "var(--accent-copper-border)",
                     background: "var(--accent-copper-bg)",
@@ -150,48 +117,54 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 </span>
               ))}
               {project.tech.length > 4 && (
-                <span className="rounded-full border border-white/10 px-2.5 py-1 text-[10px] font-bold text-white/45">
+                <span className="rounded-md border border-white/10 px-2 py-0.5 text-[10px] font-medium text-white/40">
                   +{project.tech.length - 4}
                 </span>
               )}
             </div>
           )}
 
-          <div className="mt-auto flex items-center justify-between gap-3 border-t border-white/[0.06] pt-4">
-            <div className="flex items-center gap-4">
-              {project.githubLink && (
-                <a
-                  href={project.githubLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="flex items-center gap-1.5 text-xs font-semibold text-white/55 transition-colors hover:text-white"
-                  aria-label="GitHub repository"
-                >
-                  <Github className="h-4 w-4" />
-                  GitHub
-                </a>
-              )}
-              {project.liveLink && (
-                <a
-                  href={project.liveLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="flex items-center gap-1.5 text-xs font-semibold text-white/55 transition-colors hover:text-white"
-                  aria-label="Live demo"
-                >
-                  <Globe className="h-4 w-4" />
-                  Live
-                </a>
-              )}
-            </div>
+          <div
+            className={cn(
+              "mt-auto flex items-center gap-3 border-t border-white/[0.06] pt-4",
+              hasLinks ? "justify-between" : "justify-end"
+            )}
+          >
+            {hasLinks && (
+              <div className="flex items-center gap-3">
+                {project.liveLink && (
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-white/50 transition-colors hover:text-white"
+                  >
+                    <Globe className="h-3.5 w-3.5 shrink-0" />
+                    Live
+                  </a>
+                )}
+                {project.githubLink && (
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="inline-flex items-center gap-1.5 text-xs font-medium text-white/50 transition-colors hover:text-white"
+                  >
+                    <Github className="h-3.5 w-3.5 shrink-0" />
+                    GitHub
+                  </a>
+                )}
+              </div>
+            )}
+
             <Link
               href={`/portfolio/${project.slug}`}
-              className="flex items-center gap-1 text-xs font-bold uppercase tracking-wider transition-colors"
-              style={{ color: "var(--accent-copper-light)" }}
+              className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold transition-colors"
+              style={{ color: "var(--accent-amber)" }}
             >
-              Details
+              Case study
               <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
           </div>
@@ -212,36 +185,36 @@ export const Portfolio = ({ projects, fullPage, limit }: PortfolioProps) => {
   return (
     <section
       id={fullPage ? "portfolio" : "projects"}
-      className="relative isolate overflow-hidden border-t border-white/[0.06] bg-transparent py-24 sm:py-32 lg:pb-40"
+      className="relative isolate overflow-hidden border-t border-white/[0.06] bg-transparent py-16 sm:py-20"
     >
       <PortfolioCubeBackground />
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.header
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.75, ease: EASE }}
-          className="mx-auto mb-14 max-w-3xl text-center md:mb-20"
+          transition={{ duration: 0.7, ease: EASE }}
+          className="mx-auto mb-10 max-w-2xl text-center md:mb-12"
         >
           <div
-            className="mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.18em]"
+            className="mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em]"
             style={{
               borderColor: "var(--accent-copper-border)",
               background: "var(--accent-copper-bg)",
               color: "var(--accent-copper-light)",
             }}
           >
-            <Sparkles className="h-3.5 w-3.5" style={{ color: "var(--accent-amber)" }} />
+            <Sparkles className="h-3 w-3" style={{ color: "var(--accent-amber)" }} />
             {fullPage ? "All projects" : "Our work"}
           </div>
 
-          <h2 className="mb-5 text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          <h2 className="mb-3 text-xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
             {fullPage ? (
               <>
                 All{" "}
                 <span
-                  className="bg-clip-text font-bold text-transparent [-webkit-background-clip:text]"
+                  className="bg-clip-text text-transparent [-webkit-background-clip:text]"
                   style={{
                     backgroundImage:
                       "linear-gradient(100deg, var(--accent-copper-light), var(--accent-amber))",
@@ -254,7 +227,7 @@ export const Portfolio = ({ projects, fullPage, limit }: PortfolioProps) => {
               <>
                 Our{" "}
                 <span
-                  className="bg-clip-text font-bold text-transparent [-webkit-background-clip:text]"
+                  className="bg-clip-text text-transparent [-webkit-background-clip:text]"
                   style={{
                     backgroundImage:
                       "linear-gradient(100deg, var(--accent-copper-light), var(--accent-amber))",
@@ -266,17 +239,21 @@ export const Portfolio = ({ projects, fullPage, limit }: PortfolioProps) => {
             )}
           </h2>
 
-          <p className="text-base leading-relaxed text-white/55 sm:text-lg">
+          <p className="text-sm leading-relaxed text-white/55 sm:text-base">
             {fullPage
-              ? "Products and platforms where we delivered technical excellence and measurable business impact."
+              ? "Products and platforms where we delivered technical excellence and measurable impact."
               : "A selection of what we've shipped—from flagship SaaS to custom automation."}
           </p>
         </motion.header>
 
         {visible.length === 0 ? (
-          <p className="mx-auto max-w-lg text-center text-base text-white/50">
+          <p className="mx-auto max-w-lg text-center text-sm text-white/50">
             No projects yet. Add them in the{" "}
-            <Link href="/postsiva/login" className="font-semibold underline" style={{ color: "var(--accent-copper-light)" }}>
+            <Link
+              href="/postsiva/login"
+              className="font-semibold underline"
+              style={{ color: "var(--accent-copper-light)" }}
+            >
               admin dashboard
             </Link>
             .
@@ -284,30 +261,35 @@ export const Portfolio = ({ projects, fullPage, limit }: PortfolioProps) => {
         ) : (
           <>
             <PostsivaProjectSpotlight />
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              className="mx-auto grid max-w-6xl grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3"
-            >
+
+            {gridProjects.length > 0 && (
+              <div className="mb-5 flex items-center gap-3 sm:mb-6">
+                <div className="h-px flex-1 bg-white/[0.06]" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-white/40">
+                  More projects
+                </span>
+                <div className="h-px flex-1 bg-white/[0.06]" />
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
               {gridProjects.map((project, index) => (
                 <ProjectCard key={project.id} project={project} index={index} />
               ))}
-            </motion.div>
+            </div>
           </>
         )}
 
         {!fullPage && visible.length > 0 && (
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-14 text-center sm:mt-16"
+            className="mt-10 text-center sm:mt-12"
           >
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 rounded-2xl border px-8 py-3.5 text-sm font-bold text-white transition-all duration-300 hover:brightness-110"
+              className="inline-flex items-center gap-1.5 rounded-xl border px-5 py-2.5 text-xs font-semibold text-white transition-all hover:brightness-110 sm:text-sm"
               style={{
                 borderColor: "var(--accent-copper-border)",
                 background:
@@ -315,7 +297,7 @@ export const Portfolio = ({ projects, fullPage, limit }: PortfolioProps) => {
               }}
             >
               View all projects
-              <ArrowUpRight className="h-4 w-4" style={{ color: "var(--accent-amber)" }} />
+              <ArrowUpRight className="h-3.5 w-3.5" style={{ color: "var(--accent-amber)" }} />
             </Link>
           </motion.div>
         )}
