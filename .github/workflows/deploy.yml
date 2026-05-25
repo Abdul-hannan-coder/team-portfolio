@@ -1,0 +1,24 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /root/Postsiva-Portfolio
+            git pull origin master
+            rm -rf .next
+            rm -rf node_modules
+            npm install
+            npm run build
+            pm2 restart postsiva-portfolio

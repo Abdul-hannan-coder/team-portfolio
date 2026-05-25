@@ -1,0 +1,2 @@
+-- Seed data. Projects are added via the dashboard; no hardcoded projects.
+-- Run after migrations. Optional: add other seed data below.
