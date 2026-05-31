@@ -33,6 +33,7 @@ export const DEFAULT_PROJECTS: Project[] = [
       "OAuth-scoped tokens per workspace and network",
       "AI-assisted compose with per-channel crops and copy",
     ],
+    video: "https://www.youtube.com/embed/RPD0jyw-NpY?si=2b9pz_vTeaZ1H97D",
     liveLink: "https://postsiva.com/",
   },
   {

@@ -4,262 +4,560 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   ExternalLink,
   ArrowLeft,
+  ArrowRight,
   Sparkles,
   CheckCircle2,
   Clock,
-  Cpu,
   Target,
-  ChevronRight,
+  Play,
+  FileText,
+  Images,
+  Quote,
+  User,
+  X,
   ChevronLeft,
-  Layout,
+  ChevronRight,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
-import { useState } from "react";
 import type { Project } from "@/lib/project-data";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+const FALLBACK_IMAGE = "/hero-section2.png";
 
 interface CaseStudyContentProps {
   project: Project;
 }
 
-export function CaseStudyContent({ project }: CaseStudyContentProps) {
-  const router = useRouter();
-  const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+/** Renders a demo video from either an embed URL or a raw HTML embed block. */
+function VideoEmbed({ video, title }: { video: string; title: string }) {
+  if (video.trim().startsWith("<")) {
+    return (
+      <div
+        className="overflow-hidden rounded-2xl border [&_iframe]:rounded-2xl"
+        style={{ borderColor: "var(--accent-copper-border)" }}
+        dangerouslySetInnerHTML={{ __html: video }}
+      />
+    );
+  }
+  return (
+    <div
+      className="relative aspect-video w-full overflow-hidden rounded-2xl border bg-black"
+      style={{ borderColor: "var(--accent-copper-border)" }}
+    >
+      <iframe
+        src={video}
+        title={title}
+        className="absolute inset-0 h-full w-full"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+        allowFullScreen
+      />
+    </div>
+  );
+}
 
-  const nextMedia = () => {
-    setCurrentMediaIndex((prev) => (prev + 1) % project.media.length);
-  };
+function GalleryImage({
+  src,
+  alt,
+  onOpen,
+}: {
+  src: string;
+  alt: string;
+  onOpen: () => void;
+}) {
+  const [current, setCurrent] = useState(src);
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      className="group relative block aspect-[16/10] w-full cursor-zoom-in overflow-hidden rounded-2xl border bg-zinc-900"
+      style={{ borderColor: "var(--accent-copper-border)" }}
+    >
+      <Image
+        src={current}
+        alt={alt}
+        fill
+        className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+        sizes="(max-width: 768px) 100vw, 50vw"
+        onError={() => setCurrent(FALLBACK_IMAGE)}
+      />
+      <div className="absolute inset-0 bg-black/0 transition-colors duration-300 group-hover:bg-black/30" />
+      <span
+        className="absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-lg border opacity-0 backdrop-blur-md transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          borderColor: "var(--accent-amber-border)",
+          background: "rgba(0,0,0,0.6)",
+          color: "var(--accent-amber)",
+        }}
+      >
+        <Images className="h-4 w-4" />
+      </span>
+    </button>
+  );
+}
 
-  const prevMedia = () => {
-    setCurrentMediaIndex((prev) => (prev - 1 + project.media.length) % project.media.length);
-  };
+/** Full-screen image preview with keyboard + arrow navigation. */
+function Lightbox({
+  images,
+  index,
+  onClose,
+  onNavigate,
+}: {
+  images: { url: string }[];
+  index: number;
+  onClose: () => void;
+  onNavigate: (next: number) => void;
+}) {
+  const total = images.length;
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") onNavigate((index - 1 + total) % total);
+      if (e.key === "ArrowRight") onNavigate((index + 1) % total);
+    };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [index, total, onClose, onNavigate]);
 
   return (
-    <main className="min-h-screen bg-zinc-950">
-      <Navbar />
-      <div className="pt-32 pb-20">
-        <div className="container mx-auto px-4 sm:px-6">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm sm:p-8"
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close preview"
+        className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white transition-colors hover:bg-white/10 sm:right-6 sm:top-6"
+      >
+        <X className="h-5 w-5" />
+      </button>
+
+      {total > 1 && (
+        <>
           <button
-            onClick={() => router.back()}
-            className="flex items-center gap-2 text-[#ffffff] font-bold mb-12 hover:gap-3 transition-all cursor-pointer group"
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onNavigate((index - 1 + total) % total);
+            }}
+            aria-label="Previous image"
+            className="absolute left-3 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white transition-colors hover:bg-white/10 sm:left-6"
           >
-            <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
-            Back to Portfolio
+            <ChevronLeft className="h-6 w-6" />
           </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onNavigate((index + 1) % total);
+            }}
+            aria-label="Next image"
+            className="absolute right-3 top-1/2 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/50 text-white transition-colors hover:bg-white/10 sm:right-6"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+        </>
+      )}
 
-          <div className="max-w-6xl mx-auto">
-            <div className="mb-16">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#ffffff]/10 text-[#ffffff] text-xs font-black mb-6 uppercase tracking-widest"
-              >
-                <Layout className="w-4 h-4" />
-                <span>{project.category} Case Study</span>
-              </motion.div>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-4xl sm:text-7xl font-black text-[#ffffff] mb-8 tracking-tighter"
-              >
-                {project.title}
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-xl sm:text-2xl text-[#ffffff]/80 leading-relaxed font-medium max-w-4xl"
-              >
-                {project.fullDescription}
-              </motion.p>
-            </div>
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.25, ease: EASE }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative h-[82vh] w-[92vw] max-w-6xl"
+      >
+        <Image
+          src={images[index].url}
+          alt={`Preview ${index + 1}`}
+          fill
+          className="object-contain"
+          sizes="92vw"
+          priority
+        />
+      </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 }}
-              className="relative aspect-video w-full rounded-[3.5rem] overflow-hidden shadow-xl shadow-[rgba(255, 255, 255,0.1)] bg-[#ffffff]/5 mb-20 border border-[#ffffff]/20"
+      {total > 1 && (
+        <span className="absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full border border-white/15 bg-black/60 px-3 py-1 text-xs font-semibold text-white/80">
+          {index + 1} / {total}
+        </span>
+      )}
+    </motion.div>
+  );
+}
+
+/** Section heading with an amber icon chip. */
+function SectionHeading({
+  icon: Icon,
+  children,
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="mb-8 flex items-center gap-3">
+      <div
+        className="flex h-11 w-11 items-center justify-center rounded-xl border"
+        style={{
+          borderColor: "var(--accent-copper-border)",
+          background: "var(--accent-copper-bg)",
+          color: "var(--accent-amber)",
+        }}
+      >
+        <Icon className="h-5 w-5" />
+      </div>
+      <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">{children}</h2>
+    </div>
+  );
+}
+
+export function CaseStudyContent({ project }: CaseStudyContentProps) {
+  const isLive = /live/i.test(project.duration ?? "");
+  const galleryImages = project.media.filter((m) => m.type === "image");
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  return (
+    <main className="min-h-screen bg-[#030303]">
+      <div className="pointer-events-none fixed inset-0 grid-bg" aria-hidden />
+      <div className="relative z-10">
+        <Navbar />
+
+        <div className="container mx-auto max-w-5xl px-4 pb-24 pt-28 sm:px-6 sm:pt-32">
+          <Link
+            href="/portfolio"
+            className="group mb-8 inline-flex items-center gap-2 text-sm font-semibold text-white/60 transition-colors hover:text-[var(--accent-copper-light)]"
+          >
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            Back to Projects
+          </Link>
+
+          {/* Hero */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: EASE }}
+            className="relative overflow-hidden rounded-2xl border bg-zinc-950/80 p-6 backdrop-blur-sm sm:p-9"
+            style={{
+              borderColor: "var(--accent-copper-border)",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
+            }}
+          >
+            <div
+              className="pointer-events-none absolute inset-x-0 top-0 h-px"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, var(--accent-copper), var(--accent-amber), transparent)",
+              }}
+            />
+
+            <span
+              className="mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em]"
+              style={{
+                borderColor: "var(--accent-amber-border)",
+                background: "var(--accent-amber-bg)",
+                color: "var(--accent-amber)",
+              }}
             >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentMediaIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0"
-                >
-                  {project.media[currentMediaIndex]?.type === "video" ? (
-                    <video
-                      src={project.media[currentMediaIndex].url}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <Image
-                      src={project.media[currentMediaIndex]?.url ?? project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                  )}
-                </motion.div>
-              </AnimatePresence>
-
-              {project.media.length > 1 && (
+              {isLive ? (
                 <>
-                  <div className="absolute inset-y-0 left-6 flex items-center z-20">
-                    <button
-                      onClick={prevMedia}
-                      className="w-14 h-14 bg-zinc-900/30 backdrop-blur-md rounded-full flex items-center justify-center text-[#ffffff] hover:bg-zinc-800 transition-all border border-white/20 shadow-lg group"
-                    >
-                      <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
-                    </button>
-                  </div>
-                  <div className="absolute inset-y-0 right-6 flex items-center z-20">
-                    <button
-                      onClick={nextMedia}
-                      className="w-14 h-14 bg-zinc-900/30 backdrop-blur-md rounded-full flex items-center justify-center text-[#ffffff] hover:bg-zinc-800 transition-all border border-white/20 shadow-lg group"
-                    >
-                      <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
-                    </button>
-                  </div>
-                  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-                    {project.media.map((_, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setCurrentMediaIndex(idx)}
-                        className={`h-2 rounded-full transition-all ${
-                          idx === currentMediaIndex ? "w-10 bg-white" : "w-2 bg-[#ffffff]/40"
-                        }`}
-                      />
-                    ))}
-                  </div>
+                  <span className="relative flex h-2 w-2">
+                    <span
+                      className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+                      style={{ background: "var(--accent-amber)" }}
+                    />
+                    <span
+                      className="relative inline-flex h-2 w-2 rounded-full"
+                      style={{ background: "var(--accent-amber)" }}
+                    />
+                  </span>
+                  Live Project
+                </>
+              ) : (
+                <>
+                  <Sparkles className="h-3 w-3" />
+                  {project.category}
                 </>
               )}
-            </motion.div>
+            </span>
 
-            <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
-              <div className="lg:w-2/3 space-y-20">
-                <section>
-                  <div className="flex items-center gap-3 mb-8">
-                    <div className="w-12 h-12 rounded-2xl bg-[#ffffff]/10 flex items-center justify-center text-[#ffffff]">
-                      <Sparkles className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-3xl font-black text-[#ffffff] tracking-tight">Key Features</h3>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {project.features.map((feature, i) => (
-                      <motion.div
-                        key={i}
-                        whileHover={{ x: 5 }}
-                        className="flex items-start gap-4 p-6 rounded-3xl bg-slate-50 border border-slate-100 group"
-                      >
-                        <CheckCircle2 className="w-6 h-6 text-[#ffffff] mt-0.5 transition-transform group-hover:scale-110" />
-                        <span className="text-lg text-[#ffffff] font-bold leading-tight">{feature}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </section>
+            <h1 className="mb-5 text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">
+              {project.title}
+            </h1>
 
-                <section>
-                  <div className="flex items-center gap-3 mb-8">
-                    <div className="w-12 h-12 rounded-2xl bg-[#ffffff]/10 flex items-center justify-center text-[#ffffff]">
-                      <Target className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-3xl font-black text-[#ffffff] tracking-tight">Success Results</h3>
-                  </div>
-                  <div className="grid grid-cols-1 gap-4">
-                    {project.results.map((result, i) => (
-                      <div
-                        key={i}
-                        className="flex items-center gap-4 p-6 rounded-3xl border-2 border-[#ffffff]/10 shadow-sm"
-                      >
-                        <div className="w-2 h-2 rounded-full bg-white" />
-                        <span className="text-lg text-[#ffffff]/80 font-bold">{result}</span>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </div>
+            <p className="mb-7 max-w-3xl text-base leading-relaxed text-white/65 sm:text-lg">
+              {project.description}
+            </p>
 
-              <aside className="lg:w-1/3">
-                <div className="sticky top-32 space-y-8">
-                  <div className="bg-zinc-950 rounded-[2.5rem] p-8 sm:p-10 border border-[#ffffff]/20 shadow-lg">
-                    <div className="space-y-10">
-                      <div>
-                        <h4 className="text-[#ffffff]/40 text-xs font-black uppercase tracking-[0.2em] mb-3">
-                          Client
-                        </h4>
-                        <p className="text-2xl font-black text-[#ffffff] tracking-tight">
-                          {project.client ?? "—"}
-                        </p>
-                      </div>
-                      <div>
-                        <h4 className="text-[#ffffff]/40 text-xs font-black uppercase tracking-[0.2em] mb-3">
-                          Timeline
-                        </h4>
-                        <div className="flex items-center gap-2 text-2xl font-black text-[#ffffff] tracking-tight">
-                          <Clock className="w-6 h-6" />
-                          <span>{project.duration}</span>
-                        </div>
-                      </div>
-                      <div>
-                        <h4 className="text-[#ffffff]/40 text-xs font-black uppercase tracking-[0.2em] mb-3">
-                          Tech Stack
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.map((t) => (
-                            <span
-                              key={t}
-                              className="px-4 py-2 bg-zinc-950 rounded-xl text-xs font-black text-[#ffffff] border border-[#ffffff]/10 shadow-sm"
-                            >
-                              {t}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="mt-12">
-                      <a
-                        href={project.liveLink ?? "#"}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-full py-5 bg-white text-black rounded-3xl font-black text-center shadow-xl hover:bg-zinc-800 hover:text-white hover:border-2 hover:border-white hover:scale-[1.02] transition-all flex items-center justify-center gap-3 group"
-                      >
-                        Launch Project
-                        <ExternalLink className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="bg-white rounded-[2.5rem] p-10 text-white shadow-2xl relative overflow-hidden group">
-                    <div className="absolute -top-10 -right-10 w-40 h-40 bg-zinc-950/10 rounded-full blur-3xl transition-transform group-hover:scale-150 duration-700" />
-                    <Cpu className="w-12 h-12 mb-6 opacity-50" />
-                    <h4 className="text-2xl font-black mb-4 tracking-tight">Built for Scale</h4>
-                    <p className="text-white/80 font-medium leading-relaxed mb-8">
-                      Leveraging modern architectural patterns to ensure high performance and zero downtime.
-                    </p>
-                    <Link href="#contact" className="inline-flex items-center gap-2 font-black group/link">
-                      <span>Inquire for similar tech</span>
-                      <ChevronRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
-              </aside>
+            <div className="flex flex-wrap gap-3">
+              {project.liveLink && (
+                <a
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-bold text-black transition-transform hover:scale-[1.02]"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, var(--accent-copper-light), var(--accent-amber))",
+                  }}
+                >
+                  Visit Live Site
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              )}
+              {project.video && (
+                <a
+                  href="#demo-video"
+                  className="inline-flex items-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/[0.06]"
+                  style={{ borderColor: "var(--accent-copper-border)" }}
+                >
+                  <Play className="h-4 w-4" style={{ color: "var(--accent-amber)" }} />
+                  Watch Demo
+                </a>
+              )}
             </div>
-          </div>
+          </motion.section>
+
+          {/* Detailed Overview + Project Details */}
+          <section className="mt-16 grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-12">
+            <div className="lg:col-span-2">
+              <SectionHeading icon={FileText}>Detailed Overview</SectionHeading>
+              <p className="whitespace-pre-line text-[15px] leading-relaxed text-white/70">
+                {project.fullDescription}
+              </p>
+            </div>
+
+            <aside className="lg:col-span-1">
+              <div
+                className="sticky top-28 rounded-2xl border bg-zinc-950/80 p-6 backdrop-blur-sm"
+                style={{ borderColor: "var(--accent-copper-border)" }}
+              >
+                <h3
+                  className="mb-6 text-[11px] font-bold uppercase tracking-[0.18em]"
+                  style={{ color: "var(--accent-copper)" }}
+                >
+                  Project Details
+                </h3>
+                <div className="space-y-6">
+                  {project.client && (
+                    <div>
+                      <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/40">
+                        Client
+                      </p>
+                      <p className="flex items-center gap-2 text-sm font-bold text-white">
+                        <User className="h-4 w-4" style={{ color: "var(--accent-amber)" }} />
+                        {project.client}
+                      </p>
+                    </div>
+                  )}
+                  {project.duration && (
+                    <div>
+                      <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/40">
+                        Duration
+                      </p>
+                      <p className="flex items-center gap-2 text-sm font-bold text-white">
+                        <Clock className="h-4 w-4" style={{ color: "var(--accent-amber)" }} />
+                        {project.duration}
+                      </p>
+                    </div>
+                  )}
+                  {project.tech.length > 0 && (
+                    <div>
+                      <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-white/40">
+                        Technologies
+                      </p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.tech.map((t) => (
+                          <span
+                            key={t}
+                            className="rounded-md border px-2 py-0.5 text-[11px] font-medium text-white/75"
+                            style={{
+                              borderColor: "var(--accent-copper-border)",
+                              background: "var(--accent-copper-bg)",
+                            }}
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </aside>
+          </section>
+
+          {/* Key Objectives */}
+          {project.results.length > 0 && (
+            <section className="mt-16">
+              <SectionHeading icon={Target}>Key Objectives</SectionHeading>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {project.results.map((objective, i) => {
+                  const words = objective.split(/\s+/);
+                  const title = words.slice(0, 3).join(" ");
+                  const body = words.slice(3).join(" ");
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 14 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-40px" }}
+                      transition={{ duration: 0.4, delay: (i % 3) * 0.05, ease: EASE }}
+                      className="rounded-2xl border bg-zinc-950/70 p-5 transition-colors hover:border-[color:var(--accent-copper-border)]"
+                      style={{ borderColor: "rgba(255,255,255,0.07)" }}
+                    >
+                      <CheckCircle2
+                        className="mb-3 h-5 w-5"
+                        style={{ color: "var(--accent-amber)" }}
+                      />
+                      <h3 className="mb-1.5 text-base font-bold leading-snug text-white">
+                        {title}
+                      </h3>
+                      {body && (
+                        <p className="text-sm leading-relaxed text-white/55">{body}</p>
+                      )}
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
+          {/* Key Highlights */}
+          {project.features.length > 0 && (
+            <section className="mt-16">
+              <SectionHeading icon={Sparkles}>Key Highlights</SectionHeading>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {project.features.map((feature, i) => (
+                  <div
+                    key={i}
+                    className="flex items-start gap-3 rounded-2xl border bg-zinc-950/70 p-5"
+                    style={{ borderColor: "rgba(255,255,255,0.07)" }}
+                  >
+                    <CheckCircle2
+                      className="mt-0.5 h-5 w-5 shrink-0"
+                      style={{ color: "var(--accent-amber)" }}
+                    />
+                    <span className="text-sm leading-relaxed text-white/70">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Demo Video */}
+          {project.video && (
+            <section id="demo-video" className="mt-16 scroll-mt-28">
+              <SectionHeading icon={Play}>Demo Video</SectionHeading>
+              <VideoEmbed video={project.video} title={project.title} />
+            </section>
+          )}
+
+          {/* Project Gallery */}
+          {galleryImages.length > 0 && (
+            <section className="mt-16">
+              <SectionHeading icon={Images}>Project Gallery</SectionHeading>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                {galleryImages.map((m, i) => (
+                  <GalleryImage
+                    key={i}
+                    src={m.url}
+                    alt={`${project.title} screenshot ${i + 1}`}
+                    onOpen={() => setLightboxIndex(i)}
+                  />
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Testimonial */}
+          {project.feedback && (
+            <section className="mt-20">
+              <p
+                className="mb-6 text-center text-[11px] font-bold uppercase tracking-[0.2em]"
+                style={{ color: "var(--accent-copper)" }}
+              >
+                Testimonial
+              </p>
+              <div className="mx-auto max-w-3xl text-center">
+                <Quote
+                  className="mx-auto mb-5 h-9 w-9 -scale-x-100"
+                  style={{ color: "var(--accent-amber)" }}
+                />
+                <p className="text-xl font-medium italic leading-relaxed text-white sm:text-2xl">
+                  &ldquo;{project.feedback}&rdquo;
+                </p>
+                {project.client && (
+                  <p className="mt-6 text-sm font-bold text-white">{project.client}</p>
+                )}
+              </div>
+            </section>
+          )}
+
+          {/* CTA */}
+          <section className="mt-20">
+            <div
+              className="relative overflow-hidden rounded-2xl border p-8 sm:p-12"
+              style={{
+                borderColor: "var(--accent-amber-border)",
+                background:
+                  "linear-gradient(135deg, var(--accent-copper-bg), var(--accent-amber-bg))",
+              }}
+            >
+              <div
+                className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full blur-3xl"
+                style={{ background: "var(--accent-amber-glow)" }}
+              />
+              <div className="relative z-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+                <div>
+                  <h2 className="mb-2 text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                    Ready to build something like this?
+                  </h2>
+                  <p className="max-w-xl text-sm leading-relaxed text-white/65">
+                    Let&apos;s discuss how we can bring your vision to life with high-performance
+                    automation and bespoke product engineering.
+                  </p>
+                </div>
+                <Link
+                  href="/#contact"
+                  className="inline-flex shrink-0 items-center gap-2 rounded-xl px-6 py-3 text-sm font-bold text-black transition-transform hover:scale-[1.02]"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, var(--accent-copper-light), var(--accent-amber))",
+                  }}
+                >
+                  Start a Conversation
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </section>
         </div>
+
+        <Footer />
       </div>
-      <Footer />
+
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <Lightbox
+            images={galleryImages}
+            index={lightboxIndex}
+            onClose={() => setLightboxIndex(null)}
+            onNavigate={setLightboxIndex}
+          />
+        )}
+      </AnimatePresence>
     </main>
   );
 }

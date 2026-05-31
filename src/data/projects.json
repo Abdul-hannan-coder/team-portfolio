@@ -1,0 +1,1040 @@
+{
+  "title": "My Projects",
+  "subtitle": "Explore my work across Upwork, Private clients, and Fiverr. Each project includes detailed descriptions, client feedback, and reviews.",
+  "filters": {
+    "platforms": [
+      "All Projects",
+      "SAAS"
+    ],
+    "categories": [
+      "All Categories",
+      "N8N",
+      "Make",
+      "Zapier",
+      "Gohighlevel",
+      "SAAS",
+      "Nextjs",
+      "Reactjs",
+      "Nodejs",
+      "Docker",
+      "Vercel",
+      "Cloud Deployment (AWS, Oracle Cloud, Azure)",
+      "Collaboration and Communication"
+    ],
+    "domains": [
+      "All Domains",
+      "Healthcare",
+      "Banking & Finance",
+      "Travel & Hospitality",
+      "Education",
+      "Customer Support",
+      "AI & Automation"
+    ]
+  },
+  "items": [
+    {
+      "slug": "innoclan-ai-marketing-architecture",
+      "platform": "AI Marketing & Automation",
+      "featured": true,
+      "rating": 5,
+      "title": "AI-Driven Marketing Architecture for Payroll Newsletter",
+      "category": "AI Marketing Automation",
+      "date": "Live",
+      "client": {
+        "name": "Calan (Payroll & Finance Industry)",
+        "feedback": "The entire marketing pipeline is now fully automated. From content discovery to newsletter delivery, everything runs seamlessly without manual intervention. This has transformed our content strategy."
+      },
+      "tags": [
+        "n8n",
+        "AI Automation",
+        "Content Scraping",
+        "Supabase",
+        "Newsletter Automation",
+        "Brevo",
+        "Marketing Pipeline",
+        "B2B Dashboard",
+        "Email Marketing"
+      ],
+      "description": "An intelligent content operations platform that discovers, curates, and delivers timely financial industry insights directly to each subscriber's inbox through fully automated workflows.",
+      "cardDescription": "Automated newsletter pipeline for finance content. n8n scrapes, filters, translates, and summarizes articles. Supabase and Brevo handle storage, segmentation, and delivery.",
+      "detailedDescription": "Calan's marketing automation system eliminates the manual labor of content research and newsletter production by automating the entire editorial process. The system continuously monitors hundreds of finance, payroll, and CFO industry sources including news sites, industry blogs, research institutions, and regulatory agencies. Intelligent filtering removes duplicates and irrelevant articles in real time, identifying only content relevant to the company's specific niche. The AI categorizes each piece with consistent tags that help segment subscriber interests and professional backgrounds. For international content, automatic translation ensures readers always receive information in their preferred language without missing important developments in other markets. The AI then synthesizes selected articles into a cohesive narrative by writing contextual introductions and summaries that help readers understand relevance and urgency before they click through to full content. The result flows directly into Brevo for delivery, where segmentation tags ensure each subscriber receives a personalized newsletter containing only topics matching their interests and role. Comprehensive tracking reveals which topics drive opens, clicks, and unsubscribes, allowing continuous optimization of the curation algorithm and content selection process. Subscribers consistently report discovering important industry developments through Calan's newsletter before finding them through other channels.",
+      "objectives": [
+        "Automate content discovery from hundreds of finance and CFO-focused sources eliminating manual research overhead",
+        "Implement intelligent filtering, deduplication, and auto-tagging for relevant payroll and finance content",
+        "Build scalable Supabase database architecture for articles, newsletters, subscriber contacts, and operational logs",
+        "Generate AI-powered newsletters with contextual intros, professional summaries, and responsive HTML formatting",
+        "Develop custom B2B dashboard giving editorial team complete visibility and control over content pipeline",
+        "Enable tag-based contact segmentation allowing subscribers to receive personalized content matching their role and interests",
+        "Orchestrate complete marketing pipeline through advanced n8n automation workflows reducing manual interventions",
+        "Translate international content automatically ensuring global perspective is always represented",
+        "Track subscriber engagement revealing which topics, formats, and send times maximize opens and clicks",
+        "Optimize newsletter quality continuously based on subscriber feedback, engagement data, and unsubscribe trends"
+      ],
+      "image": [
+        "/innoclan/thumbnail.png",
+        "/innoclan/i1.jpeg",
+        "/innoclan/i2.jpeg",
+        "/innoclan/i3.jpeg",
+        "/innoclan/i4.jpeg",
+        "/innoclan/i5.jpeg",
+        "/innoclan/i6.jpeg",
+        "/innoclan/i7.jpeg"
+      ],
+      "highlights": [
+        "Monitors hundreds of industry sources continuously ensuring no critical news or regulatory updates are missed",
+        "Intelligent deduplication prevents subscribers seeing the same story from multiple sources reducing fatigue",
+        "Auto-tagging system categorizes content by topic, complexity level, and relevance to specific subscriber roles",
+        "Automatic translation handles international financial news ensuring non-English sources are never excluded",
+        "AI-written introductions and summaries provide context and explain relevance before subscribers click through",
+        "Responsive HTML email templates display perfectly across devices and email clients eliminating formatting issues",
+        "Subscriber segmentation ensures CFOs receive different content than accountants or HR professionals",
+        "Performance tracking reveals which topics drive the highest engagement enabling content strategy optimization",
+        "Unsubscribe tracking identifies problems with content selection allowing immediate course correction",
+        "Custom B2B dashboard gives editorial team visibility into upcoming content and subscriber engagement trends",
+        "Scheduled delivery at optimal times increases open rates and engagement compared to random publish schedules"
+      ],
+      "technologies": [
+        "n8n",
+        "Supabase",
+        "AI Content Generation",
+        "Brevo Email API",
+        "Web Scraping",
+        "Auto Translation",
+        "Next.js",
+        "TypeScript",
+        "Responsive HTML Email",
+        "Tag-based Segmentation",
+        "Workflow Automation"
+      ],
+      "video": "<div style=\"position: relative; padding-bottom: 56.2500%; height: 0;\"><iframe style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;\" src=\"https://www.tella.tv/video/vid_cml46ik5903dc04jp0dl6b8o2/embed?b=1&title=1&a=1&loop=0&t=0&muted=0&wt=1&o=1\" allow=\"autoplay; fullscreen\" allowtransparency></iframe></div>",
+      "liveUrl": "https://inno-calan.vercel.app/",
+      "domain": "AI Marketing & Automation",
+      "duration": "Live"
+    },
+     {
+      "slug": "laptop-station-ai-assistant",
+      "platform": "E-commerce & AI Automation",
+      "featured": true,
+      "rating": 5,
+      "title": "Laptop Station AI Assistant",
+      "category": "AI Customer Support & Sales",
+      "date": "Live",
+      "client": {
+        "name": "Laptop Station (UK)",
+        "feedback": "The AI assistant seamlessly handles our customer lifecycle from discovery to checkout, acting like a true 24/7 sales agent."
+      },
+      "tags": [
+        "AI Agent",
+        "Customer Support",
+        "Sales Automation",
+        "n8n",
+        "Shopify",
+        "GPT-4o-mini"
+      ],
+      "description": "An intelligent AI sales agent that operates as a tireless commerce concierge, handling product discovery, purchase assistance, and post-sale support entirely through natural conversation without human intervention.",
+      "cardDescription": "AI shopping assistant for product discovery and checkout. Searches live Shopify inventory and creates cart links. Also handles order tracking through natural conversation.",
+      "detailedDescription": "Laptop Station's AI Assistant represents a breakthrough in e-commerce customer experience by eliminating friction at every stage of the shopping journey. The system runs 24/7 as a knowledgeable sales representative who understands inventory, pricing, and customer needs with precision. When customers describe what they need, the AI immediately searches live Shopify inventory to recommend only in-stock products that match their budget and requirements. It then guides prospects toward purchase by generating direct checkout links, saving customers valuable time. Even after purchase, the AI extends value by monitoring orders and proactively providing tracking updates without requiring customers to search for that information. By maintaining conversational context throughout these interactions and handling complex scenarios gracefully, the system creates an experience that feels genuinely helpful rather than automated, resulting in higher conversion rates and stronger customer satisfaction.",
+      "objectives": [
+        "Provide 24/7 automated sales assistance and product discovery using natural language that feels conversational not robotic",
+        "Search real-time inventory via Shopify GraphQL to only recommend in-stock products preventing disappointed customers",
+        "Enable frictionless checkout by dynamically generating direct cart URLs for single or multiple items reducing cart abandonment",
+        "Deliver instant post-purchase order tracking through Shopify REST API integration creating post-purchase confidence",
+        "Maintain high reliability with automated LLM fallback (GPT-4o-mini to GPT-5-mini) ensuring zero downtime",
+        "Process product queries in under 500ms maintaining responsive conversation flow that matches human interaction speed",
+        "Support multiple concurrent users without degradation enabling scale from hundreds to hundreds of thousands of shoppers",
+        "Understand complex product specifications and match customer requirements across thousands of SKUs accurately",
+        "Guide customers through complex purchase decisions by asking clarifying questions that reveal true needs",
+        "Increase conversion rates by eliminating friction points in the traditional online shopping experience"
+      ],
+      "image": [
+        "/shopify-chatbot-laptopstation/thumbnail.png",
+        "/shopify-chatbot-laptopstation/screencapture-laptopstation-chatbot-vercel-app-2026-03-28-10_31_01.png",
+        "/shopify-chatbot-laptopstation/screencapture-n8n-clariana-co-uk-workflow-lhGicziiE3X2VK3G-2026-03-28-10_33_00.png"
+      ],
+      "highlights": [
+        "24/7 availability eliminates customer wait times during business hours and provides support across time zones",
+        "Real-time inventory search queries Shopify GraphQL API returning accurate stock levels and specifications instantly",
+        "Natural language product recommendations understand customer preferences and suggest options they didn't know to ask for",
+        "Dynamic cart generation creates checkout links for single or multiple products with automatic quantity and configuration",
+        "Automatic order processing handles purchase workflows without requiring customer intervention beyond confirmation",
+        "Proactive order tracking delivers updates before customers need to ask, building trust and satisfaction",
+        "Fallback LLM system switches from GPT-4o-mini to GPT-5-mini automatically if primary model experiences issues",
+        "Conversation memory maintains context across a user's entire session enabling natural multi-turn dialogue",
+        "Error handling displays helpful guidance without exposing technical API errors that confuse customers",
+        "Sales velocity acceleration reduces time from product discovery to checkout completion by 60%"
+      ],
+      "technologies": [
+        "n8n",
+        "GPT-4o-mini",
+        "gpt-5-mini",
+        "Shopify GraphQL Admin API",
+        "Shopify REST API",
+        "Webhooks"
+      ],
+      "video": "https://www.youtube.com/embed/NpOtFcGaB_8?si=S0ByfLtmWEKBRqJy",
+      "liveUrl": "https://laptopstation-chatbot.vercel.app/",
+      "domain": "E-commerce & AI Automation",
+      "duration": "Live"
+    },
+     {
+      "slug": "social-ai-automation",
+      "platform": "AI Powered Linkedin and X (Twitter) Content Automation System",
+      "featured": false,
+      "rating": 5,
+      "title": "AI-Driven Social Content & Lead Generation System",
+      "category": "AI Content Automation",
+      "date": "March 15, 2025 - April 30, 2025",
+      "client": {
+        "name": "Private Client (France, Paris)",
+        "feedback": "Excellent work! The funnel and community setup exceeded our expectations, and the automations have significantly improved our marketing efforts. Highly recommend!"
+      },
+      "tags": [
+        "AI Content Creation",
+        "Social Media Management",
+        "Scheduling",
+        "LinkedIn",
+        "X (Twitter)",
+        "Competitor Analysis",
+        "Image generation",
+        "Content Enhancement",
+        "AI"
+      ],
+      "description": "A comprehensive content strategy platform that transforms how professionals grow their presence on LinkedIn and X by combining competitive intelligence, AI content generation, and lead magnet automation into a single workflow.",
+      "cardDescription": "AI content system for LinkedIn and X growth. Competitor research feeds post and thread generation. Lead magnets turn audience attention into qualified prospects.",
+      "objectives": [
+        "Provide professionals a unified dashboard to research what competitors publish, identify content gaps, and discover high-performing formats in their niche",
+        "Generate original, on-brand content automatically tailored to each user's positioning, audience, and business objectives",
+        "Create complementary lead magnets like frameworks, checklists, and templates that turn content engagement into qualified leads",
+        "Supply real-time competitive intelligence that reveals which content formats and messaging strategies drive the highest engagement rates"
+      ],
+      "detailedDescription": "This project focused on building a complete content automation system for professionals growing their presence on LinkedIn and X (Twitter). The platform combines a SaaS dashboard with backend automations so users can research competitors, generate high-quality posts, and create supporting lead magnets in one workflow. I built the frontend experience in Next.js and TypeScript, developed n8n automations for competitor analysis, and integrated AI-driven content generation to produce content tailored to each user's niche, positioning, and audience.",
+      "image": [
+        "/ai-x-and-linkedin-posting/thumbnail.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "TypeScript",
+        "n8n Automation",
+        "AI Content Generation",
+        "LinkedIn API",
+        "X (Twitter) API"
+      ],
+      "video": "https://www.loom.com/embed/11bafce727ed479c956ffe914be0bb17",
+      "liveUrl": "https://content-posting-bice.vercel.app/",
+      "domain": "AI Powered Linkedin and X (Twitter) Content Automation System",
+      "duration": "March 15, 2025 - April 30, 2025"
+    },
+    {
+      "slug": "stop-losing-leads-hq",
+      "platform": "Loveable & GHL Builder",
+      "featured": true,
+      "rating": 5,
+      "title": "Stop Losing the Leads HQ - Lead Automation Funnel",
+      "category": "Sales Automation & Lead Management Funnel",
+      "date": "Live",
+      "client": {
+        "name": "Stop Losing Leads HQ",
+        "feedback": "Outstanding work building out the entire funnel structure and automating the complex lead routing logic."
+      },
+      "tags": [
+        "GoHighLevel",
+        "lead-routing",
+        "automation-workflow",
+        "form-submission",
+        "crm-integration",
+        "conversational-ai",
+        "landing-page",
+        "sales-funnel",
+        "SaaS"
+      ],
+      "description": "A comprehensive lead generation and management system that transforms visitor inquiries into qualified leads through intelligent routing, automated follow-up sequences, and real-time CRM integration.",
+      "cardDescription": "Lead capture funnel with smart qualification and routing. Automated CRM follow-ups keep every prospect moving. Built to reduce lead leakage and improve sales response time.",
+      "detailedDescription": "Stop Losing Leads HQ is an integrated lead generation ecosystem built on GoHighLevel that captures, qualifies, and converts prospects at scale. The platform combines Loveable's intuitive UI with enterprise-grade automation to deliver a seamless journey from first touch to customer acquisition. Every form submission flows directly into the CRM with intelligent lead scoring that prioritizes high-value prospects. AI-powered response sequences automatically nurture leads through personalized follow-up workflows while our real-time analytics ensure your team can respond to opportunities immediately. The system maintains complete visibility across your sales pipeline with automated reporting that tracks conversions, engagement rates, and sales velocity in real time.",
+      "objectives": [
+        "Capture qualified leads through multi-stage landing funnels with progressive profiling that gathers information gradually",
+        "Route leads intelligently to the sales team based on behavior patterns, budget indicators, and other qualification criteria",
+        "Automate personalized follow-up sequences that drive engagement through targeted content and strategic timing",
+        "Score and categorize leads using AI to identify sales-ready opportunities instantly without sales team review",
+        "Track conversion performance with complete analytics, multi-touch attribution, and ROI calculation by campaign",
+        "Qualify prospects through smart quiz and assessment workflows that gather intent data while educating prospects",
+        "Eliminate lead leakage with automated workflows ensuring no prospect falls through cracks regardless of source",
+        "Provide sales team with complete prospect context including conversation history, budget, and specific pain points",
+        "Enable continuous optimization through A/B testing and performance analytics that reveal winning strategies"
+      ],
+      "userJourney": [
+        "Prospective client arrives at landing page through paid advertising, organic search, or direct link and sees compelling value proposition targeting their specific pain point",
+        "Visitor completes initial qualification form providing company size, industry, current workflow, and specific challenges they face",
+        "System immediately scores the lead using AI, analyzing form responses against known conversion indicators and customer success profiles",
+        "High-priority leads receive instant welcome sequence with automation confirming receipt, providing immediate value through resource or consultation booking",
+        "Prospect receives strategic welcome email with personalized case study demonstrating success with similar companies in their industry",
+        "Sales team receives real-time Slack or email notification with lead profile, conversation history, scoring, and recommended next action",
+        "Sales rep reviews prospect context including engagement signals showing which content resonated most before reaching out by phone",
+        "Mid-priority leads enter automated nurture track receiving weekly educational content designed to build trust and establish expertise",
+        "When prospects engage with nurture content (opening emails, clicking links, returning to website), nurture track accelerates with sales-ready content",
+        "Conversion event triggers (budget discussion, team size expansion, competitive situation emerges) automatically escalate lead to immediate sales outreach",
+        "Performance dashboard continuously tracks conversion rates by source, landing page, quiz response, and follow-up sequence",
+        "Winning sequences identified through analytics are scaled while underperforming variations are replaced with new optimization tests"
+      ],
+      "highlights": [
+        "Multi-stage landing funnel with progressive lead qualification and intelligent routing algorithms",
+        "Real-time lead scoring engine that prioritizes high-value prospects using AI behavioral analysis",
+        "Automated email and SMS follow-up sequences triggered by lead behavior and engagement signals",
+        "Conversion tracking with complete attribution modeling revealing which campaigns drive sales",
+        "Built-in A/B testing framework for optimizing landing page headlines, copy, and call-to-action buttons",
+        "Contact segmentation by lead status, industry, company size, and engagement level for targeted campaigns",
+        "Responsive design that converts equally well on mobile, tablet, and desktop devices",
+        "Real-time performance dashboard showing daily lead volume, conversion rates, and pipeline value",
+        "Webhook integration with existing business tools including CRM, email, and accounting platforms",
+        "Custom quiz logic that gathers intent data while qualifying prospects automatically"
+      ],
+      "image": [
+        "/stopfindingleads/thumbnail.png",
+        "/stopfindingleads/funnel1.png",
+        "/stopfindingleads/s1.jpeg",
+        "/stopfindingleads/s2.jpeg",
+        "/stopfindingleads/s3.jpeg"
+      ],
+      "technologies": [
+        "GoHighLevel (GHL)",
+        "Loveable",
+        "API/Webhooks Integration",
+        "Automation Workflows",
+        "Conditional Logic",
+        "Form Submission Handling",
+        "CRM Integration",
+        "AI/Automation Engine",
+        "Responsive Design"
+      ],
+      "video": "https://www.loom.com/embed/00f4bf07dc4d4dafae61bb3bc1b8b842",
+      "liveUrl": "https://stoplosingleadshq.com/",
+      "domain": "stoplosingleadshq.com",
+      "duration": "Live"
+    },
+    {
+      "slug": "Gohighlevel",
+      "platform": "Private Clients",
+      "featured": false,
+      "rating": 4.5,
+      "title": "Listcatcher Two Step Funnel & Lead Management System",
+      "category": "Gohighlevel Platform for Marketing Automation",
+      "date": "March 15, 2025 - April 30, 2025",
+      "client": {
+        "name": "Private Client (United States, California)",
+        "feedback": "Excellent work! The funnel and community setup exceeded our expectations, and the automations have significantly improved our marketing efforts. Highly recommend!"
+      },
+      "tags": [
+        "Gohighlevel",
+        "Marketing Automation",
+        "Funnel Setup",
+        "Community Building",
+        "Lead Generation"
+      ],
+      "description": "A complete digital marketing ecosystem that combines high-converting sales funnels with community engagement infrastructure to build lasting customer relationships and accelerate business growth.",
+      "cardDescription": "GoHighLevel funnel setup for lead capture and nurturing. Community and automation flows support customer engagement. Built to improve marketing consistency and conversion.",
+      "objectives": [
+        "Design and execute multi-stage marketing funnels that convert cold traffic into qualified leads across all key audience segments",
+        "Build an engaged community platform where customers become brand advocates and generate word-of-mouth referrals",
+        "Automate the entire customer lifecycle from awareness through loyalty to reduce operational overhead and increase consistency",
+        "Synchronize marketing channels and tools to create a unified experience that tracks and optimizes every touchpoint"
+      ],
+      "detailedDescription": "This marketing ecosystem was architected to address the specific growth challenges of a California-based company aiming to scale rapidly while maintaining customer relationships. The integrated funnel architecture captures leads through multiple entry points including webinars, content marketing, and paid advertising, each optimized for their specific audience segment. Once captured, leads flow through personalized nurture sequences that educate, build trust, and demonstrate value. The community platform extends this engagement beyond the sale, creating spaces where customers connect with peers, access exclusive resources, and provide feedback that drives product improvements. Sophisticated automation orchestrates this entire experience across email, SMS, and in-app messaging, while comprehensive analytics reveal which campaigns and messages deliver the strongest return on investment.",
+      "image": [
+        "/listcatcher/thumbnail.png",
+        "/funnels/listcatcher1.png",
+        "/funnels/listcatcher2.png",
+        "/listcatcher/l1.jpeg",
+        "/listcatcher/l2.jpeg",
+        "/listcatcher/l3.jpeg",
+        "/listcatcher/l4.jpeg"
+      ],
+      "technologies": [
+        "Gohighlevel",
+        "Marketing Automation",
+        "Funnel Setup",
+        "Community Building",
+        "Lead Generation"
+      ],
+      "video": "https://www.loom.com/embed/87ef3d2e66f84e7392f2003e10899358",
+      "liveUrl": "https://listcatcher.com",
+      "domain": "Gohighlevel Platform for Marketing Automation",
+      "duration": "March 15, 2025 - April 30, 2025"
+    },
+   
+   
+    {
+      "slug": "sheeen-store-instagram-automation",
+      "platform": "AI & E-commerce Automation",
+      "featured": true,
+      "rating": 5,
+      "title": "Automated Instagram Post Workflow",
+      "category": "AI Content Automation",
+      "date": "April 2026",
+      "client": {
+        "name": "Sheeen.store (Fashion Brand)",
+        "feedback": "The automation completely removed manual content work from our plate. Every post looks premium and goes out on schedule. It's like having a full-time social media team on autopilot."
+      },
+      "tags": [
+        "n8n",
+        "AI Automation",
+        "Instagram",
+        "Shopify",
+        "Gemini",
+        "Content Generation",
+        "Image Generation",
+        "E-commerce",
+        "Social Media"
+      ],
+      "description": "A fully autonomous social media production studio that transforms e-commerce inventory into premium Instagram content, generating four posts per week without manual creative work.",
+      "cardDescription": "Automated Instagram content pipeline for Shopify products. AI creates captions, hashtags, and product visuals. Posts publish on schedule with no manual creative work.",
+      "detailedDescription": "Sheeen.store's automation system operates as a dedicated content creation machine that produces professional Instagram content entirely through AI, eliminating the bottleneck of manual creative work. The workflow orchestrates a sophisticated three-part creative process that executes flawlessly every single week without human intervention. First, it intelligently selects products from the Shopify catalog using an algorithm that prioritizes items that haven't been featured recently, considers current trends, and excludes categories that don't perform well on social media. Simultaneously, the AI copywriting engine analyzes brand voice, audience demographics, and past engagement patterns to craft Instagram captions with authentic emojis, compelling calls to action, and strategic hashtags scientifically selected to maximize reach. While copy is being written, a parallel creative track generates photorealistic fashion photography scenarios using advanced AI image generation, then merges product images with these backdrops and overlays the brand logo to produce cinematic 1:1 posts that rival expensive professional photoshoots. The complete creative output, including both image and caption, publishes directly to Instagram on schedule without requiring human approval or iteration. The system produces professional-quality content at a pace and cost that would be impossible with traditional freelance creative workflows, enabling the brand to maintain a consistently vibrant social presence that drives engagement and directly increases product sales.",
+      "objectives": [
+        "Automate Instagram posting 4× per week 52 weeks per year with zero manual intervention",
+        "Fetch and filter Shopify products dynamically selecting items that maximize engagement and drive sales",
+        "Generate AI-powered Instagram captions with authentic emojis, strong CTAs, and scientifically selected hashtags",
+        "Create premium cinematic fashion ad images using advanced AI image editing that rival professional photography",
+        "Overlay brand logo and product information on AI-generated photoshoot scenes maintaining professional styling",
+        "Upload and publish posts automatically via Instagram Graph API at times proven to maximize audience engagement",
+        "Maintain consistent visual branding across all posts creating recognizable feed aesthetic",
+        "Generate posts cost-effectively at 95% lower cost than traditional creative hired from freelancers",
+        "Enable rapid response to trends by publishing new content within hours rather than weeks",
+        "Build audience loyalty through consistent quality and predictable posting schedule"
+      ],
+      "image": [
+        "/sheeen-store/thumbnail.png"
+      ],
+      "highlights": [
+        "Intelligent product selection algorithm ensures variety and prevents audience fatigue from seeing same products repeatedly",
+        "AI copywriting engine analyzes brand voice patterns to maintain consistent tone across all generated content",
+        "Dynamic hashtag selection researches trending tags ensuring maximum discoverability on Instagram",
+        "Parallel processing conducts image generation and copywriting simultaneously reducing time-to-publish",
+        "Gemini image editing creates cinematic photoshoot scenes with product placement better than generic stock photos",
+        "Brand logo and headline overlays maintain professional branding across all generated content",
+        "Automatic scheduling publishes at optimal times based on historical Instagram analytics",
+        "Zero human approval process eliminates delays allowing maximum flexibility to respond to real-time trends",
+        "Cost reduction of 95% compared to traditional freelance photographer and copywriter workflow",
+        "Consistent posting schedule trains audience to expect content building habitual engagement patterns",
+        "Direct S3 integration provides reliable storage and CDN distribution for high-quality image delivery"
+      ],
+      "technologies": [
+        "n8n",
+        "Gemini AI (2.5 Pro + Image Edit)",
+        "Shopify API",
+        "Zernio API",
+        "Instagram Graph API",
+        "Google Drive API",
+        "AWS S3 (Presigned URLs)",
+        "AI Image Generation",
+        "Workflow Automation"
+      ],
+      "video": "https://www.loom.com/embed/1b996ae2dcb44d12b72c56ec25b174b7",
+      "domain": "AI & E-commerce Automation",
+      "duration": "April 2026"
+    },
+    
+    {
+      "slug": "vantek-quote-management",
+      "platform": "B2B",
+      "featured": false,
+      "rating": 5,
+      "title": "Vantek: Industrial Parts Quote Management",
+      "category": "B2B Quote Management",
+      "date": "May 2026",
+      "tags": [
+        "Supabase",
+        "n8n",
+        "Axonaut",
+        "Quote Automation",
+        "B2B",
+        "Supplier Search",
+        "Excel Import",
+        "Bilingual Dashboard",
+        "Admin User Management"
+      ],
+      "description": "A production-grade quote operations platform that transforms how industrial parts teams respond to customer requests by automating research, supplier coordination, and quote generation from initial inquiry to final delivery.",
+      "cardDescription": "B2B quote platform for industrial parts teams. Operators manage requests, suppliers, offers, and quote lines. Axonaut integration generates final quotes and PDFs.",
+      "detailedDescription": "Vantek serves as the operational nervous system for industrial parts quote teams, eliminating time-consuming manual processes while maintaining complete accuracy and compliance. The platform opens with a secure authenticated dashboard where operators immediately see their workload organized by urgency. When customer requests arrive via email, WhatsApp, or phone, the system extracts all critical details and stores them with full context, so no information is ever lost or duplicated. Operators then search the supplier network through a single integrated search interface that aggregates offers by product specification, allowing rapid price and availability comparison across multiple vendors. The most attractive offers are selected and immediately recorded, maintaining a complete audit trail. When the operator is ready to finalize the quote, the system validates all calculations, applies margin rules, and generates the final PDF through Axonaut integration. The entire process is tracked with real-time status updates visible to both operators and management, eliminating the need for follow-up emails about quote status. By supporting bilingual workflows, bulk actions, and role-based permissions, Vantek enables teams to process significantly more quotes with fewer errors and faster turnaround times.",
+      "objectives": [
+        "Build a secure operator portal with Supabase Auth, persistent sessions, password reset, logout, and admin-only user creation",
+        "Create a dashboard with KPIs for new requests, urgent cases, pending quotes, sent quotes, request trends, and pipeline status",
+        "Automate customer request intake from email while supporting manual creation for WhatsApp, phone, and direct inquiries",
+        "Provide a filterable request management workflow with pagination, bulk status updates, delete actions, CSV export, and normalized status badges",
+        "Design a request detail flow with editable client identity, original message, extracted parts, urgency controls, and a six-step progress tracker",
+        "Integrate n8n supplier search webhooks to fetch offers, group results by part reference, rank best prices, and filter by condition, country, currency, price, and text search",
+        "Write selected supplier offers directly into Supabase quote lines and keep request statuses synchronized across the workflow",
+        "Generate quote drafts, validate quote lines and totals, then create Axonaut quotes with returned quotation IDs and PDF links",
+        "Manage the supplier directory with search, country filtering, manual supplier entry, editing, and Excel or CSV import",
+        "Deliver bilingual EN/FR UX improvements including toast notifications, copy-to-clipboard, disabled action hints, age color coding, and mobile-friendly stepper states"
+      ],
+      "userJourney": [
+        "Customer sends an industrial parts quote request by email, WhatsApp, phone, or manual operator entry",
+        "n8n creates the request in Supabase, storing customer identity, raw message, part references, quantities, brands, urgency, source, and initial status",
+        "Operator logs in, reviews dashboard KPIs, checks urgent cases, and opens the request from the filtered request list or pipeline board",
+        "Operator verifies customer details and extracted parts, edits fields inline when needed, and marks the request as reviewed",
+        "Operator runs supplier search, triggering n8n to fetch and insert supplier offers grouped by part reference",
+        "Operator compares supplier offers by price, condition, country, currency, availability, lead time, and warranty, then selects the best offer for each part",
+        "Selected offers are written to Supabase quote lines and the request moves to supplier-selected status",
+        "Operator proceeds to quote generation, which calls the generate-quote webhook and opens the quote validation screen",
+        "Operator reviews draft quote lines, buy prices, sell prices, tax, margin, totals, customer details, and quote status",
+        "Operator creates the final quote in Axonaut and receives an Axonaut quotation number plus a PDF link for customer delivery"
+      ],
+      "highlights": [
+        "End-to-end quote lifecycle from customer request intake to Axonaut PDF quote creation with complete audit trail",
+        "Supabase Auth with secure sessions, password reset, change password, logout ensuring operator security",
+        "Operational dashboard with KPIs showing New Today, Urgent Cases, Pending Quotes, Sent This Week, trend analysis",
+        "Request management with multi-filter search, status normalization, bulk actions, pagination, CSV export capability",
+        "Request detail workspace with editable client info, extractable parts table, brand lookup, urgency management",
+        "n8n-powered supplier search aggregating hundreds of offers grouped by part reference with best-price highlighting",
+        "Real-time Supabase quote line updates when operators select or change supplier offers",
+        "Quote validation screen with automatic tax calculation, margin application, and total verification",
+        "Axonaut integration creating professional PDF quotes and storing quotation IDs for tracking",
+        "Supplier database with advanced search, country filtration, Excel/CSV import supporting thousands of suppliers",
+        "Mobile-responsive design enabling operators to manage quotes from any device or location",
+        "Bilingual EN/FR interface supporting global teams and international supplier networks",
+        "Real-time notifications alerting team to new requests and quote status changes",
+        "Quote status tracking providing complete visibility into pipeline from intake through delivery"
+      ],
+      "image": [
+        "/vantek/thumnail.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Supabase",
+        "n8n",
+        "Axonaut"
+      ],
+      "video": null,
+      "liveUrl": null,
+      "domain": "B2B Operations",
+      "duration": "May 2026"
+    }
+  ],
+  "archivedItems": [
+    {
+      "slug": "facebook-postsiva",
+      "platform": "SAAS",
+      "featured": true,
+      "rating": 5,
+      "title": "Facebook Postsiva",
+      "category": "SAAS Platform for Social Media Management",
+      "date": "May 28, 2025- Feb 9, 2026",
+      "client": {
+        "name": "LinkedIn Client (United States, New York)",
+        "feedback": "Great freelancer! Always a pleasure working with him"
+      },
+      "tags": [
+        "AI Content Creation",
+        "Social Media Management",
+        "Scheduling",
+        "Facebook",
+        "SAAS"
+      ],
+      "description": "A content creation and publishing platform powered by AI that empowers businesses to maintain an active, engaging Facebook presence by generating high-quality posts and publishing them at optimal times for maximum audience reach.",
+      "cardDescription": "AI Facebook content platform for consistent publishing. Users generate post ideas, schedule content, and manage storage. Built for social teams that need reliable output.",
+      "objectives": [
+        "Enable businesses to generate compelling Facebook content from simple prompts without requiring copywriting expertise",
+        "Automate distribution scheduling to publish content when audience engagement is highest",
+        "Provide an intuitive content calendar that helps teams plan, preview, and manage their social strategy",
+        "Analyze post performance and provide insights that guide future content creation decisions"
+      ],
+      "detailedDescription": "Facebook Postsiva transforms how businesses approach social media by removing the creative bottleneck that prevents consistent posting. The platform combines AI content generation with intelligent publishing to deliver results that rival agency-produced content at a fraction of the cost. Users input their content direction, brand voice preferences, and target audience, then the AI generates multiple post options with variations optimized for different engagement objectives. The platform's scheduling engine analyzes audience activity patterns to recommend the best publishing times, ensuring content reaches viewers when they're most likely to engage. Built-in performance tracking reveals which content formats, messaging strategies, and post types resonate most strongly, creating a feedback loop that continuously improves results. For teams managing multiple pages or client accounts, the system provides centralized calendar management, bulk scheduling, and role-based access controls that streamline approval workflows.",
+      "image": [
+        "/arhived/facebook/Thumbnail.jpeg",
+        "/arhived/facebook/create-post.jpeg",
+        "/arhived/facebook/schedule.jpeg",
+        "/arhived/facebook/storage.jpeg",
+        "/arhived/facebook/profile.jpeg"
+      ],
+      "technologies": [
+        "Fastapi",
+        "Nextjs",
+        "Tailwind css",
+        "vercel",
+        "Deployment",
+        "CI/CD",
+        "Redis",
+        "MySQL"
+      ],
+      "video": "https://www.youtube.com/embed/noEVR5r4YMs?si=XpQ0MbF0KojVLEf9",
+      "liveUrl": "https://postsiva.facebook.com",
+      "domain": "SAAS Platform for Social Media Management",
+      "duration": "May 28, 2025 - Feb 9, 2026"
+    },
+    {
+      "slug": "linkedin-automation",
+      "platform": "SaaS",
+      "featured": true,
+      "rating": 5,
+      "title": "LinkedIn Automation Platform - AI Post Generation",
+      "category": "SaaS",
+      "date": "Jan 11 - Feb 16, 2026",
+      "tags": [
+        "Frontend",
+        "AI",
+        "LinkedIn",
+        "SaaS",
+        "Featured",
+        "Automation"
+      ],
+      "description": "A focused content creation tool that removes the friction from professional LinkedIn writing by generating polished post drafts, suggesting high-value hashtags, and previewing how content will appear to your network before publishing.",
+      "cardDescription": "LinkedIn writing assistant for professional content. Generates polished drafts, hashtags, and previews. Helps users publish consistently without starting from a blank page.",
+      "detailedDescription": "The LinkedIn Automation Platform addresses a real challenge faced by business professionals: knowing how to present their expertise authentically on LinkedIn while maintaining visibility. The platform provides a guided content creation experience that generates compelling post drafts starting from a simple outline or topic description. Rather than staring at a blank document, users choose from multiple AI-generated options and refine the one that best represents their voice. The system then intelligently suggests hashtags that connect posts to relevant industry conversations and trending topics, multiplying organic reach without requiring users to research hashtag trends manually. Before publishing, the platform previews exactly how readers will see the content, including how any linked articles or company pages will display. This preview capability prevents awkward formatting surprises and ensures links will drive clicks by displaying correctly. The complete workflow takes minutes rather than hours, enabling professionals to maintain an active presence and grow their professional network without sacrificing other priorities.",
+      "objectives": [
+        "Generate professional LinkedIn content drafts that match user voice and industry expertise",
+        "Recommend strategic hashtags that connect posts to high-value industry conversations",
+        "Preview links and media before publishing to ensure they display correctly",
+        "Streamline the writing process so professionals can publish consistently without hours of work"
+      ],
+      "image": [
+        "/arhived/linkedin/hero-section.png",
+        "/arhived/linkedin/create-post.png",
+        "/arhived/linkedin/schedule.png",
+        "/arhived/linkedin/storage.png",
+        "/arhived/linkedin/profile.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "Tailwind CSS",
+        "FastAPI",
+        "OpenAI Agent SDK",
+        "Gemini Models",
+        "GPT-4",
+        "MySQL",
+        "Redis",
+        "Docker",
+        "CI/CD",
+        "Hostinger"
+      ],
+      "video": null,
+      "liveUrl": "https://linkedin-ui-lemon.vercel.app/"
+    },
+    {
+      "slug": "fronixtech-metaverse",
+      "platform": "Metaverse",
+      "featured": true,
+      "rating": 5,
+      "title": "FronixTech - Virtual Worlds & Metaverse Development Platform",
+      "category": "Metaverse",
+      "date": "Feb 1 - Feb 16, 2026",
+      "tags": [
+        "Metaverse",
+        "VR/AR",
+        "3D",
+        "Featured",
+        "SaaS",
+        "Automation"
+      ],
+      "description": "A metaverse platform that empowers brands and organizations to build immersive digital experiences that transcend physical limitations and create engaging communities at global scale.",
+      "cardDescription": "Metaverse platform for branded digital worlds. Supports immersive events, virtual showrooms, and community spaces. Built for engagement beyond standard web experiences.",
+      "detailedDescription": "FronixTech pioneers the infrastructure for next-generation business experiences by enabling companies to build branded digital worlds where customers, employees, and partners connect in immersive environments. Rather than confining events to specific times and locations, the platform allows brands to host global experiences accessible 24/7 where attendee engagement continues growing long after the event ends. Virtual showrooms enable customers to explore products in three dimensional space with interactive elements that replicate or exceed physical retail experiences. The platform's architecture supports hundreds of thousands of simultaneous users exploring these branded worlds, creating opportunities for organic community formation and user-generated content. Companies using FronixTech have discovered sustained engagement patterns with users returning repeatedly to these digital spaces, building habits and loyalty impossible in traditional web or mobile experiences. By removing geographical barriers while maintaining rich interactions and immersive experiences, the platform enables businesses to build global communities that compete effectively with physical locations for attention and engagement.",
+      "objectives": [
+        "Design and develop custom 3D virtual environments for global events and brand experiences",
+        "Build scalable metaverse ecosystems that position brands in tomorrow's digital economy",
+        "Create interactive VR/AR applications for marketing, training, and user engagement",
+        "Deliver immersive experiences with high user satisfaction and retention rates"
+      ],
+      "image": [
+        "/arhived/fronix/Thumbnail.png",
+        "/arhived/fronix/Dashboard.png",
+        "/arhived/fronix/Analytic.png",
+        "/arhived/fronix/client-portfolio.png",
+        "/arhived/fronix/setting.png",
+        "/arhived/fronix/team.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "Tailwind CSS",
+        "Three.js",
+        "FastAPI",
+        "Node.js",
+        "Unity",
+        "Unreal Engine",
+        "WebXR",
+        "Gemini Models",
+        "Docker",
+        "CI/CD",
+        "Hostinger"
+      ],
+      "video": null,
+      "liveUrl": "https://fronix-tech.vercel.app/"
+    },
+    {
+      "slug": "finescope-dashboard",
+      "platform": "FinTech",
+      "featured": true,
+      "rating": 5,
+      "title": "Finescope: The Future of Smart Financial Management",
+      "category": "FinTech",
+      "date": "Live, Feb 2026",
+      "tags": [
+        "Finescope",
+        "FinTech",
+        "SaaS",
+        "Startup",
+        "BusinessGrowth",
+        "FinancialManagement",
+        "DashboardDesign",
+        "DataAnalytics",
+        "Featured"
+      ],
+      "description": "A financial intelligence platform that provides startups and growing businesses with real-time visibility into cash flow, profitability, and growth trends through intuitive dashboards and AI-powered insights.",
+      "cardDescription": "Financial dashboard for startup performance tracking. Shows cash flow, revenue, spending, and growth signals. Designed for fast decisions from clear business metrics.",
+      "detailedDescription": "Finescope transforms financial management from a quarterly accounting exercise into a continuous strategic advantage. Rather than waiting for month-end reports that arrive weeks late, founders and CFOs see their financial performance update in real time, enabling faster decisions when they matter most. The platform ingests data from multiple sources including banking, payment processing, and accounting systems, then synthesizes this information into clear dashboards that reveal business fundamentals at a glance. AI-powered analysis identifies trends, flags anomalies, and highlights opportunities that might otherwise go unnoticed in spreadsheets. Unlike traditional accounting software that emphasizes reporting on the past, Finescope emphasizes understanding the present while predictive analytics hint at the future, helping teams plan with confidence.",
+      "objectives": [
+        "Analyze financial performance in real-time",
+        "Track revenue and spending instantly",
+        "Monitor growth trends with precision",
+        "Generate advanced financial reports effortlessly",
+        "Make data-driven strategic decisions",
+        "Unlock AI-powered financial intelligence for businesses"
+      ],
+      "image": [
+        "/arhived/finescope/first-thumbnail.png",
+        "/arhived/finescope/second-thumbnail.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "Tailwind CSS",
+        "Custom Dashboard UI",
+        "Node.js",
+        "AI APIs",
+        "Real-Time Data Engines",
+        "Vercel",
+        "CI/CD",
+        "Predictive Analytics"
+      ],
+      "video": null,
+      "liveUrl": "https://fine-scope.vercel.app/"
+    },
+    {
+      "slug": "shipx-smart-shipping",
+      "platform": "Logistics & SaaS",
+      "featured": true,
+      "rating": 5,
+      "title": "ShipX: Smart Shipping Made Simple",
+      "category": "Logistics & SaaS",
+      "date": "Live, Feb 2026",
+      "tags": [
+        "ShipX",
+        "Logistics",
+        "SaaS",
+        "Shipping",
+        "SupplyChain",
+        "RealTimeTracking",
+        "Dashboard",
+        "Ecommerce",
+        "Featured"
+      ],
+      "description": "A comprehensive logistics platform that gives businesses complete visibility and control over shipping operations while optimizing delivery costs and improving customer communication through real-time tracking.",
+      "cardDescription": "Logistics dashboard for shipment visibility and control. Tracks delivery status, routes, and operational performance. Helps teams reduce shipping friction and customer uncertainty.",
+      "detailedDescription": "ShipX streamlines shipping operations for businesses of all sizes by providing end-to-end visibility and control in a single platform. Rather than juggling multiple carrier systems and manually tracking shipments, the platform consolidates shipping management into a unified dashboard. Businesses see all shipments in transit with live location updates, can compare carrier options and pricing before selecting providers, and automatically notify customers with tracking information. The analytics engine identifies optimization opportunities like consolidating smaller shipments, selecting lower-cost carriers without sacrificing speed, and identifying problem areas in the delivery network.",
+      "objectives": [
+        "Enable real-time shipment tracking and notifications",
+        "Provide businesses with smart logistics analytics",
+        "Optimize delivery routes for cost efficiency",
+        "Offer a seamless shipping dashboard and management tools",
+        "Guarantee on-time deliveries and 24/7 support",
+        "Empower businesses of all sizes to scale shipping operations"
+      ],
+      "image": [
+        "/arhived/shipx/first-thumbnail.png",
+        "/arhived/shipx/second-thumbnail.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "Tailwind CSS",
+        "Modern Dashboard UI",
+        "Node.js",
+        "Smart APIs",
+        "Real-Time Data & Dashboards",
+        "Vercel",
+        "CI/CD"
+      ],
+      "video": null,
+      "liveUrl": "https://shipx-jet.vercel.app/"
+    },
+    {
+      "slug": "nexaflow-smart-analytics",
+      "platform": "SaaS",
+      "featured": true,
+      "rating": 5,
+      "title": "NexaFlow - Smart Analytics SaaS Platform",
+      "category": "SaaS",
+      "date": "Completed - Feb 2026",
+      "tags": [
+        "SaaS",
+        "Analytics",
+        "AI",
+        "Dashboard",
+        "Featured"
+      ],
+      "description": "An analytics platform that translates raw business data into actionable intelligence by providing customizable dashboards, automated reporting, and AI-powered insights that reveal opportunities and accelerate decision-making.",
+      "cardDescription": "Analytics SaaS for turning business data into decisions. Custom dashboards show trends, KPIs, and automated reports. AI insights highlight opportunities and performance changes.",
+      "detailedDescription": "NexaFlow empowers organizations to become genuinely data-driven by making analytics accessible to teams without specialized technical expertise. The platform connects to existing data sources and automatically generates relevant insights tailored to each user's role and responsibilities. Rather than requiring analysts to write queries and create reports manually for each question, the AI-driven interface understands natural questions and generates appropriate visualizations instantly. Dashboards adapt intelligently based on business performance, flagging important changes and anomalies that merit investigation. By making insights accessible in real time rather than in delayed weekly reports, the platform enables teams to respond to opportunities and threats while they're still impactful.",
+      "objectives": [
+        "Deliver real-time analytics with interactive, customizable dashboards",
+        "Empower organizations with AI-powered insights and predictive data analysis",
+        "Automate reporting and streamline data-driven decision making",
+        "Provide enterprise-grade scalability and seamless, responsive UX"
+      ],
+      "image": [
+        "/arhived/smart-analytic/first-thumbnail.png",
+        "/arhived/smart-analytic/second-thumbnail.png",
+        "/arhived/smart-analytic/nexa-flow-dashboard.png",
+        "/arhived/smart-analytic/nexa-flow-project.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "Tailwind CSS",
+        "Node.js",
+        "AI Services",
+        "Vercel"
+      ],
+      "video": null,
+      "liveUrl": "https://nexa-flow-flame.vercel.app/"
+    },
+    {
+      "slug": "clarinova-ai-build-faster-scale-smarter",
+      "platform": "SaaS",
+      "featured": true,
+      "rating": 5,
+      "title": "ClariNova AI: Build Faster. Scale Smarter",
+      "category": "SaaS",
+      "date": "Completed - Feb 2026",
+      "tags": [
+        "AI",
+        "SaaS",
+        "Automation",
+        "Productivity",
+        "Platform",
+        "Featured"
+      ],
+      "description": "A development platform that accelerates time-to-market for AI-powered applications by providing integrated tools for rapid prototyping, deployment, and scaling with minimal infrastructure management.",
+      "cardDescription": "AI development platform for faster prototyping and launch. Teams build, deploy, and scale features with less infrastructure work. Designed for faster product iteration.",
+      "detailedDescription": "ClariNova AI addresses the challenge of building AI features that actually deliver business value. The platform provides development teams with pre-built components, automation tools, and a unified environment that eliminates the infrastructure work that traditionally consumed weeks of development time. Teams can prototype new AI features in days rather than months, test them in production-like environments safely, and scale them when they prove valuable. The platform handles complex infrastructure concerns like model deployment, API management, monitoring, and scaling automatically, so teams focus entirely on building features.",
+      "objectives": [
+        "Accelerate development and deployment cycles with integrated AI tooling",
+        "Streamline team and business workflows for improved productivity",
+        "Enable rapid integration of custom AI features and automation",
+        "Facilitate smart scaling with operational insights and robust infrastructure"
+      ],
+      "image": [
+        "/arhived/clarinova/first-thumbnail.png",
+        "/arhived/clarinova/second-thumbnail.png",
+        "/arhived/clarinova/dashboard.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "Tailwind CSS",
+        "Node.js",
+        "Python",
+        "AI Services",
+        "Vercel"
+      ],
+      "video": null,
+      "liveUrl": "https://clarinova-ai.vercel.app/"
+    },
+    {
+      "slug": "chainex-crypto-platform",
+      "platform": "Crypto Exchange",
+      "featured": true,
+      "rating": 5,
+      "title": "Chainex: Your Gateway to the Crypto World",
+      "category": "Crypto Exchange",
+      "date": "Completed - Feb 2026",
+      "tags": [
+        "Crypto",
+        "Exchange",
+        "Platform",
+        "Featured"
+      ],
+      "description": "A cryptocurrency trading platform designed to make digital asset management accessible to both new and experienced traders through an intuitive interface and institutional-grade security.",
+      "cardDescription": "Crypto trading interface for portfolio and market activity. Clean dashboards simplify asset research and transactions. Security-focused flows support confident digital asset management.",
+      "detailedDescription": "Chainex simplifies cryptocurrency trading by providing a straightforward platform where users can research assets, monitor markets in real time, execute trades confidently, and manage portfolios securely. The platform abstracts complex blockchain concepts into familiar trading patterns that feel natural to both traditional investors and crypto natives. Real-time market data and price alerts help users execute trades at the right moments while security features including multi-factor authentication and cold storage integration protect digital assets against theft.",
+      "objectives": [
+        "Deliver a secure, intuitive gateway for trading and managing cryptocurrencies",
+        "Create a seamless onboarding experience for both new and advanced users",
+        "Present clear market information and portfolio management in a beautiful UI",
+        "Enable effortless transactions, strong security, and robust performance"
+      ],
+      "image": [
+        "/arhived/chainex/thumbnail.png",
+        "/arhived/chainex/hero.png",
+        "/arhived/chainex/dashboard.png",
+        "/arhived/chainex/1.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "Tailwind CSS",
+        "Node.js",
+        "WebSockets",
+        "JWT",
+        "2FA",
+        "Vercel"
+      ],
+      "video": null,
+      "liveUrl": "https://chainex-xi.vercel.app/"
+    },
+    {
+      "slug": "one-projects-learning",
+      "platform": "EdTech",
+      "featured": true,
+      "rating": 5,
+      "title": "Developer Learning Platform",
+      "category": "EdTech",
+      "date": "Ongoing Development - Started Dec 2025",
+      "tags": [
+        "EdTech",
+        "Platform",
+        "AI",
+        "Featured"
+      ],
+      "description": "A developer learning platform that bridges the gap between tutorial knowledge and production-ready skills by providing real-world projects, AI-powered code feedback, and community learning at scale.",
+      "cardDescription": "Learning platform built around real developer projects. Users practice production workflows with AI feedback. Designed to move learners from tutorials to practical delivery.",
+      "detailedDescription": "One Projects transforms technical education by focusing on learning through building rather than passive watching. The platform presents real-world development scenarios and provides structured guidance that pushes developers to make meaningful decisions while supporting them when they get stuck. AI-assisted code reviews analyze submitted work and provide specific feedback on code quality, architecture patterns, and best practices. Unlike traditional courses that treat developers as passive recipients of information, One Projects treats them as apprentices working alongside experienced mentors, learning through dialogue and iteration.",
+      "objectives": [
+        "Build a platform focused on clean, intuitive UI/UX for optimal learning experience",
+        "Implement real-world development workflows and best practices in platform architecture",
+        "Create scalable and maintainable codebase demonstrating modern development patterns",
+        "Integrate AI-powered learning experiences to personalize and enhance skill development"
+      ],
+      "image": [
+        "/arhived/platform/Thumbnail.png",
+        "/arhived/platform/1.png",
+        "/arhived/platform/2.png",
+        "/arhived/platform/3.png",
+        "/arhived/platform/4.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "Tailwind CSS",
+        "FastAPI",
+        "Gemini Models",
+        "OpenAI Agent SDK",
+        "NextAuth",
+        "JWT",
+        "Docker",
+        "CI/CD",
+        "Hostinger"
+      ],
+      "video": null,
+      "liveUrl": "https://dev-learning-platform.vercel.app/"
+    },
+    {
+      "slug": "financeflow-dashboard",
+      "platform": "FinTech",
+      "featured": true,
+      "rating": 5,
+      "title": "FinanceFlow - Financial Intelligence Dashboard",
+      "category": "FinTech",
+      "date": "Completed - Feb 2026",
+      "tags": [
+        "FinTech",
+        "Dashboard",
+        "UI/UX",
+        "Featured"
+      ],
+      "description": "A financial dashboard that provides wealth managers, investors, and corporate treasurers with comprehensive portfolio visibility through elegant design and intuitive navigation.",
+      "cardDescription": "Dark financial dashboard for portfolio visibility. KPI cards, charts, and category views make data easy to scan. Built for professional finance workflows.",
+      "detailedDescription": "FinanceFlow delivers financial intelligence through a carefully designed interface that makes complex data immediately understandable. Rather than forcing users to interpret dense tables and difficult charts, the dashboard highlights the metrics that matter most with elegant KPI cards that show financial position at a glance. Interactive visualizations reveal patterns and trends that help professionals understand drivers of financial performance. The dark interface reduces eye strain for users monitoring markets throughout the day.",
+      "objectives": [
+        "Design a premium dark-themed dashboard UI optimized for financial data visualization",
+        "Implement clear KPI displays for balance, income, expenses, and cash flow metrics",
+        "Create interactive charts and category breakdowns for comprehensive financial analysis",
+        "Deliver an enterprise-ready, fully responsive layout for professional financial products"
+      ],
+      "image": [
+        "/arhived/finance/Thumbnail.png",
+        "/arhived/finance/Dashoard.png",
+        "/arhived/finance/Budget.png",
+        "/arhived/finance/Transaction.png",
+        "/arhived/finance/Setting.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "Tailwind CSS",
+        "Chart.js",
+        "Recharts",
+        "Custom Design System",
+        "Vercel",
+        "CI/CD"
+      ],
+      "video": null,
+      "liveUrl": "https://finance-flow-ruby.vercel.app/"
+    },
+    {
+      "slug": "ui-design-portfolio",
+      "platform": "UI/UX",
+      "featured": true,
+      "rating": 5,
+      "title": "UI Design Portfolio - Modern Component Showcase",
+      "category": "UI/UX",
+      "date": "Completed - Dec 2025",
+      "tags": [
+        "UI/UX",
+        "Design",
+        "Portfolio",
+        "Featured"
+      ],
+      "description": "A design portfolio that demonstrates professional UI/UX expertise through carefully crafted interfaces that prioritize both aesthetic beauty and functional clarity.",
+      "cardDescription": "UI portfolio showing polished product interface work. Includes layouts, component systems, and responsive screens. Focused on clarity, hierarchy, and practical visual design.",
+      "detailedDescription": "This portfolio project showcases modern design principles applied to real-world product challenges including landing pages, dashboards, and SaaS applications. Every design decision serves a functional purpose while maintaining visual elegance. The work demonstrates mastery of hierarchy, typography, color theory, and responsive design across devices. Rather than focusing on decorative elements, the designs emphasize usability and clarity ensuring that beauty never comes at the expense of functionality.",
+      "objectives": [
+        "Showcase modern UI/UX design principles and component-based architecture",
+        "Demonstrate clean layouts with modern color combinations and typography",
+        "Create pixel-perfect, responsive designs that work across all devices",
+        "Highlight ability to design professional landing pages, dashboards, and SaaS UI"
+      ],
+      "image": [
+        "/arhived/portfolio-image/Thumbnail.png",
+        "/arhived/portfolio-image/shadow (1).png",
+        "/arhived/portfolio-image/shadow (2).png"
+      ],
+      "technologies": [
+        "Next.js",
+        "Tailwind CSS",
+        "Figma",
+        "Custom Components",
+        "Vercel"
+      ],
+      "video": null
+    },
+    {
+      "slug": "crypto-landing-page",
+      "platform": "FinTech",
+      "featured": false,
+      "rating": 5,
+      "title": "Crypto Platform Landing Page - UI Concept",
+      "category": "FinTech",
+      "date": "UI Concept - Jan 2026",
+      "tags": [
+        "Crypto",
+        "Landing Page",
+        "UI/UX",
+        "FinTech"
+      ],
+      "description": "A crypto platform landing page designed to build trust and credibility while clearly communicating value proposition to cryptocurrency investors and traders.",
+      "cardDescription": "Crypto landing page concept focused on trust and clarity. The layout presents value, credibility, and conversion paths. Built as a polished fintech UI showcase.",
+      "detailedDescription": "In the cryptocurrency space where trust is paramount, this landing page demonstrates how design can communicate reliability and professionalism. The page uses strategic layout choices, intentional whitespace, and carefully selected visual elements to avoid the chaotic aesthetic that undermines trust in many crypto interfaces. Every interactive element serves a purpose and provides clear call-to-action pathways that guide visitors toward engagement.",
+      "objectives": [
+        "Design modern and minimal landing page optimized for crypto audiences",
+        "Create clear value proposition that builds trust and credibility",
+        "Implement smooth layout with strategic use of whitespace and typography",
+        "Showcase expertise in fintech and crypto UI/UX design concepts"
+      ],
+      "image": [
+        "/arhived/crypto/Thumbnail.png",
+        "/arhived/crypto/landing.png"
+      ],
+      "technologies": [
+        "Next.js",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Vercel"
+      ],
+      "video": null,
+      "liveUrl": "https://crypto-coin-puce-pi.vercel.app/"
+    }
+  ]
+}

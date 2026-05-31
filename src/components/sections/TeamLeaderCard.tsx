@@ -54,7 +54,7 @@ export function TeamLeaderCard({ member, onZoomImage }: TeamLeaderCardProps) {
         <button
           type="button"
           onClick={() => onZoomImage(member.image)}
-          className="relative mx-auto mb-5 h-32 w-32 shrink-0 cursor-zoom-in overflow-hidden rounded-2xl transition-shadow duration-300 group-hover:shadow-[0_0_28px_var(--accent-amber-glow)] md:mx-0 md:mb-0 md:h-40 md:w-40"
+          className="relative mx-auto mb-5 block h-32 w-32 shrink-0 cursor-zoom-in overflow-hidden rounded-2xl transition-shadow duration-300 group-hover:shadow-[0_0_28px_var(--accent-amber-glow)] md:mx-0 md:mb-0 md:h-40 md:w-40"
           style={{ boxShadow: "0 0 0 2px var(--accent-copper-border)" }}
           aria-label={`View photo of ${member.name}`}
         >
@@ -62,7 +62,7 @@ export function TeamLeaderCard({ member, onZoomImage }: TeamLeaderCardProps) {
             src={member.image}
             alt={member.name}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
             sizes="160px"
             priority
           />

@@ -51,24 +51,30 @@ function FloatingAvatar({
           ease: "easeInOut",
           delay,
         }}
-        className="w-[72px] h-[72px] sm:w-[88px] sm:h-[88px] md:w-[100px] md:h-[100px]"
+        className="group relative w-[72px] h-[72px] sm:w-[88px] sm:h-[88px] md:w-[100px] md:h-[100px]"
       >
         <Link
           href={`/team/${slug}`}
-          className="group relative block w-full h-full rounded-full border-2 border-white/25 bg-zinc-900 shadow-xl shadow-black/40 overflow-hidden ring-2 ring-white/10 hover:border-white/50 hover:scale-105 transition-transform duration-300"
-          title={name}
+          aria-label={name}
+          className="block w-full h-full rounded-full border-2 border-white/25 bg-zinc-900 shadow-xl shadow-black/40 overflow-hidden ring-2 ring-white/10 hover:border-[color:var(--accent-amber-border)] hover:scale-105 transition-transform duration-300"
         >
           <Image
             src={image}
             alt={name}
             width={100}
             height={100}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top"
           />
-          <span className="absolute inset-x-0 bottom-0 py-1.5 bg-gradient-to-t from-black/80 to-transparent text-[10px] sm:text-xs font-bold text-white text-center opacity-0 group-hover:opacity-100 transition-opacity truncate px-1">
-            {name.split(" ").slice(-2).join(" ")}
-          </span>
         </Link>
+        <span
+          className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 whitespace-nowrap rounded-lg border px-2.5 py-1 text-[11px] sm:text-xs font-bold text-white opacity-0 shadow-lg backdrop-blur-md transition-opacity duration-200 group-hover:opacity-100"
+          style={{
+            borderColor: "var(--accent-copper-border)",
+            background: "rgba(0,0,0,0.92)",
+          }}
+        >
+          {name}
+        </span>
       </motion.div>
     </motion.div>
   );

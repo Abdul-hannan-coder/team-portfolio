@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getProjectBySlug } from "@/lib/supabase/projects";
+import { getJsonProjectBySlug } from "@/lib/json-projects";
 import { CaseStudyContent } from "@/components/portfolio/CaseStudyContent";
 
 interface PageProps {
@@ -8,7 +8,7 @@ interface PageProps {
 
 export default async function CaseStudyPage({ params }: PageProps) {
   const { slug } = await params;
-  const project = await getProjectBySlug(slug);
+  const project = getJsonProjectBySlug(slug);
 
   if (!project) {
     notFound();
@@ -19,7 +19,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const project = await getProjectBySlug(slug);
+  const project = getJsonProjectBySlug(slug);
   if (!project) return { title: "Project not found" };
   return { title: `${project.title} | Portfolio` };
 }

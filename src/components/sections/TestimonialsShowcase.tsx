@@ -15,44 +15,28 @@ const STATS = [
 
 const REVIEWS = [
   {
-    text: "Powerful tools for file management, communication, and performance insights.",
-    author: "Client from Fiverr",
-    rating: 5,
-    platform: "Fiverr",
-    country: "United States",
-    link: "https://fiverr.com",
+    text: "The AI automation transformed our internal operations, streamlining our data management. The smart workflows keep our processes perfectly optimized effortlessly.",
+    image: "/Rifak.jpeg",
+    name: "Rifak",
+    role: "Founder of Novaprotect Insurance",
   },
   {
-    text: "EngrSquad delivers solutions that actually work for our business goals.",
-    author: "Client from Upwork",
-    rating: 5,
-    platform: "Upwork",
-    country: "United Kingdom",
-    link: "https://upwork.com",
+    text: "Deploying these AI and automation systems was smooth and quick. The intelligent bots made scaling our customer support completely effortless.",
+    image: "/imran.jpeg",
+    name: "Imrane Abdoul",
+    role: "Co-founder of Velios",
   },
   {
-    text: "Exceptional quality and speed. The team went above and beyond.",
-    author: "Client from LinkedIn",
-    rating: 5,
-    platform: "LinkedIn",
-    country: "Canada",
-    link: "https://linkedin.com",
+    text: "The support team is exceptional, guiding us through setup and providing ongoing assistance, ensuring our systems run at peak efficiency around the clock.",
+    image: "/Baptiste.jpeg",
+    name: "Baptiste Simard",
+    role: "Founder at Velios",
   },
   {
-    text: "Highly recommended for complex web applications and automation.",
-    author: "Client from Referral",
-    rating: 5,
-    platform: "Referral",
-    country: "Germany",
-    link: "#",
-  },
-  {
-    text: "Professional communication and polished delivery on every milestone.",
-    author: "Client from Direct",
-    rating: 5,
-    platform: "Direct",
-    country: "Australia",
-    link: "#",
+    text: "The seamless integration of N8N workflows enhanced our software's capabilities. Highly recommend for its smart automation and robust reliability.",
+    image: "/Enzo.jpeg",
+    name: "Enzo",
+    role: "Technical Architect",
   },
 ];
 
@@ -149,7 +133,7 @@ export function TestimonialsShowcase() {
           items={REVIEWS}
           direction="left"
           speed="slow"
-          className="mx-auto max-w-5xl"
+          className="mx-auto max-w-6xl"
         />
       </motion.div>
     </div>

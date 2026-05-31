@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles, Github, Globe, ArrowUpRight } from "lucide-react";
+import { Sparkles, Globe, ArrowUpRight, Layers, Calendar, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -34,11 +34,11 @@ function ProjectCover({
         src={src}
         alt={project.title}
         fill
-        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+        sizes="(max-width: 640px) 100vw, 360px"
         onError={() => setSrc(FALLBACK_IMAGE)}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/90 via-[#030303]/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#030303]/40 via-transparent to-transparent" />
 
       {project.featured && (
         <span
@@ -57,7 +57,13 @@ function ProjectCover({
 }
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const hasLinks = Boolean(project.githubLink || project.liveLink);
+  const highlightCount = project.features.length || project.results.length;
+  const stats = [
+    { icon: Layers, title: `${project.tech.length}`, subtitle: "Technologies" },
+    { icon: CheckCircle2, title: `${highlightCount}`, subtitle: "Highlights" },
+    { icon: Calendar, title: project.duration || "—", subtitle: "Timeline" },
+    { icon: Globe, title: project.liveLink ? "Live" : "Case study", subtitle: "Status" },
+  ];
 
   return (
     <motion.article
@@ -65,26 +71,29 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, delay: index * 0.05, ease: EASE }}
-      className="group flex h-full flex-col"
+      className="group"
     >
       <div
         className={cn(
-          "flex h-full flex-col overflow-hidden rounded-xl border bg-zinc-950/95 transition-all duration-300",
+          "group relative overflow-hidden rounded-xl border bg-zinc-950/95 backdrop-blur-sm transition-all duration-300",
           "hover:border-[color:var(--accent-copper-border)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.45)]",
           project.featured && "border-[color:var(--accent-amber-border)]/60"
         )}
         style={{
           borderColor: "var(--accent-copper-border)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.35)",
         }}
       >
-        <Link
-          href={`/portfolio/${project.slug}`}
-          className="relative block aspect-[16/10] shrink-0"
-        >
-          <ProjectCover project={project} className="absolute inset-0" />
-        </Link>
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-px"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, var(--accent-copper), var(--accent-amber), transparent)",
+          }}
+        />
 
-        <div className="flex flex-1 flex-col p-4 sm:p-5">
+        <div className="relative z-10 flex flex-col gap-5 p-4 sm:flex-row sm:items-center sm:gap-6 sm:p-5 lg:gap-8">
+        <div className="flex min-w-0 flex-1 flex-col">
           <p
             className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.14em]"
             style={{ color: "var(--accent-copper)" }}
@@ -93,81 +102,90 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </p>
 
           <Link href={`/portfolio/${project.slug}`} className="mb-2 block">
-            <h3 className="line-clamp-2 text-base font-bold leading-snug tracking-tight text-white transition-colors group-hover:text-[var(--accent-copper-light)] sm:text-[17px]">
+            <h3 className="line-clamp-2 text-base font-bold leading-snug tracking-tight text-white transition-colors group-hover:text-[var(--accent-copper-light)] sm:text-lg lg:text-xl">
               {project.title}
             </h3>
           </Link>
 
-          <p className="mb-4 line-clamp-2 flex-1 text-sm leading-relaxed text-white/55">
+          <p className="mb-4 line-clamp-2 flex-1 text-sm leading-relaxed text-white/55 sm:line-clamp-3">
             {project.description}
           </p>
 
-          {project.tech.length > 0 && (
-            <div className="mb-4 flex min-h-[26px] flex-wrap gap-1.5">
-              {project.tech.slice(0, 4).map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-md border px-2 py-0.5 text-[10px] font-medium text-white/70"
+          <div className="mb-4 flex flex-wrap gap-2">
+            {project.liveLink ? (
+              <>
+                <a
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold text-black transition-transform hover:scale-[1.02] sm:text-sm"
                   style={{
-                    borderColor: "var(--accent-copper-border)",
-                    background: "var(--accent-copper-bg)",
+                    background:
+                      "linear-gradient(135deg, var(--accent-copper-light), var(--accent-amber))",
                   }}
                 >
-                  {tech}
-                </span>
-              ))}
-              {project.tech.length > 4 && (
-                <span className="rounded-md border border-white/10 px-2 py-0.5 text-[10px] font-medium text-white/40">
-                  +{project.tech.length - 4}
-                </span>
-              )}
-            </div>
-          )}
-
-          <div
-            className={cn(
-              "mt-auto flex items-center gap-3 border-t border-white/[0.06] pt-4",
-              hasLinks ? "justify-between" : "justify-end"
+                  Visit site
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+                <Link
+                  href={`/portfolio/${project.slug}`}
+                  className="inline-flex items-center gap-1.5 rounded-xl border px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-white/[0.06] sm:text-sm"
+                  style={{ borderColor: "var(--accent-copper-border)" }}
+                >
+                  Case study
+                </Link>
+              </>
+            ) : (
+              <Link
+                href={`/portfolio/${project.slug}`}
+                className="inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-xs font-bold text-black transition-transform hover:scale-[1.02] sm:text-sm"
+                style={{
+                  background:
+                    "linear-gradient(135deg, var(--accent-copper-light), var(--accent-amber))",
+                }}
+              >
+                Case study
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </Link>
             )}
-          >
-            {hasLinks && (
-              <div className="flex items-center gap-3">
-                {project.liveLink && (
-                  <a
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-white/50 transition-colors hover:text-white"
-                  >
-                    <Globe className="h-3.5 w-3.5 shrink-0" />
-                    Live
-                  </a>
-                )}
-                {project.githubLink && (
-                  <a
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="inline-flex items-center gap-1.5 text-xs font-medium text-white/50 transition-colors hover:text-white"
-                  >
-                    <Github className="h-3.5 w-3.5 shrink-0" />
-                    GitHub
-                  </a>
-                )}
-              </div>
-            )}
-
-            <Link
-              href={`/portfolio/${project.slug}`}
-              className="inline-flex shrink-0 items-center gap-1 text-xs font-semibold transition-colors"
-              style={{ color: "var(--accent-amber)" }}
-            >
-              Case study
-              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
           </div>
+
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {stats.map((item) => (
+              <div
+                key={item.subtitle}
+                className="rounded-xl border bg-black/40 px-2.5 py-2"
+                style={{ borderColor: "var(--accent-copper-border)" }}
+              >
+                <item.icon
+                  className="mb-1 h-3.5 w-3.5"
+                  style={{ color: "var(--accent-amber)" }}
+                />
+                <p className="line-clamp-1 text-xs font-bold leading-tight text-white">
+                  {item.title}
+                </p>
+                <p className="text-[8px] font-semibold uppercase tracking-wider text-white/45">
+                  {item.subtitle}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <Link
+          href={`/portfolio/${project.slug}`}
+          className="relative mx-auto w-full shrink-0 sm:mx-0 sm:max-w-[280px] md:max-w-[320px] lg:max-w-[360px]"
+        >
+          <div
+            className="relative aspect-[16/10] overflow-hidden rounded-xl border"
+            style={{
+              borderColor: "var(--accent-copper-border)",
+              boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+            }}
+          >
+            <ProjectCover project={project} className="absolute inset-0" />
+          </div>
+        </Link>
         </div>
       </div>
     </motion.article>
@@ -175,17 +193,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export const Portfolio = ({ projects, fullPage, limit }: PortfolioProps) => {
-  const sorted = [...projects].sort((a, b) => {
-    if (a.featured !== b.featured) return a.featured ? -1 : 1;
-    return b.id - a.id;
-  });
-  const visible = limit ? sorted.slice(0, limit) : sorted;
+  // Preserve the order defined in projects.json (no re-sorting).
+  const visible = limit ? projects.slice(0, limit) : projects;
   const gridProjects = visible.filter((p) => p.slug !== "postsiva");
 
   return (
     <section
       id={fullPage ? "portfolio" : "projects"}
-      className="relative isolate overflow-hidden border-t border-white/[0.06] bg-transparent py-16 sm:py-20"
+      className={cn(
+        "relative isolate overflow-hidden border-t border-white/[0.06] bg-transparent py-16 sm:py-20",
+        fullPage && "pt-28 sm:pt-36"
+      )}
     >
       <PortfolioCubeBackground />
 
@@ -272,7 +290,7 @@ export const Portfolio = ({ projects, fullPage, limit }: PortfolioProps) => {
               </div>
             )}
 
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+            <div className="flex flex-col gap-5 sm:gap-6">
               {gridProjects.map((project, index) => (
                 <ProjectCard key={project.id} project={project} index={index} />
               ))}

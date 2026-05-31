@@ -8,12 +8,12 @@ import { Portfolio } from "@/components/sections/Portfolio";
 import { Certificates } from "@/components/sections/Certificates";
 import { TestimonialsAndFAQ } from "@/components/sections/TestimonialsAndFAQ";
 import { ContactAndFooter } from "@/components/sections/ContactAndFooter";
-import { getProjects } from "@/lib/supabase/projects";
+import { getJsonProjects } from "@/lib/json-projects";
 import { getAllMembersCertificates } from "@/lib/landing-data";
 
 export default async function Home() {
   const [projects, certificates] = await Promise.all([
-    getProjects(),
+    Promise.resolve(getJsonProjects()),
     getAllMembersCertificates(),
   ]);
   return (
