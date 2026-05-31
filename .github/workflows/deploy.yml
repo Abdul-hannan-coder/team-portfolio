@@ -1,8 +1,8 @@
 name: Deploy
 
-# CI/CD temporarily disabled — runs only when triggered manually from the
-# GitHub Actions tab, not automatically on push.
 on:
+  push:
+    branches: [main, master]
   workflow_dispatch:
 
 jobs:
